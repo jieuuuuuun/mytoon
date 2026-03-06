@@ -8,11 +8,12 @@ import MyTestParameterRead from "../pages/templates/mytesturlparameter/MyTestPar
 import MyTestParameterContainer from "../pages/templates/mytesturlparameter/MyTestParameterContainer";
 import MyTestQueryStringRead from "../pages/templates/mytestquerystring/MyTestQueryStringRead";
 import MyTestQueryStringContainer from "../pages/templates/mytestquerystring/MyTestQueryStringContainer";
+import Layout from "../pages/layout/Layout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MyTestLayout />,
+    element: <Layout />,
     children: [
       {
         path: "", // == index: true

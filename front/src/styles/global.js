@@ -1,7 +1,7 @@
 // 전역에 사용되는 스타일을 적용시키기위한 파일
 // 폰트, 리셋
-import { createGlobalStyle } from 'styled-components'
-import {reset} from 'styled-reset'
+import { createGlobalStyle } from "styled-components";
+import { reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   /* css 스타일 리셋 */
@@ -107,5 +107,16 @@ const GlobalStyle = createGlobalStyle`
     border: none;
   }
 
-`
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  input{
+    background:none;
+    border:none
+  }
+
+
+`;
 export default GlobalStyle;

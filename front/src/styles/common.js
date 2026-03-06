@@ -6,7 +6,11 @@ export const flexCenter = css`
   justify-content: center;
   align-items: center;
 `
-
+export const flexBeetween = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
 export const flexBeetweenRow = css`
   display: flex;
   justify-content: space-between;
