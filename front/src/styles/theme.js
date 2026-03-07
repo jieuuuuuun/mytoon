@@ -80,12 +80,13 @@ theme.FONT_SIZE = {
   h4: "21px",
   h5: "18px",
   h6: "16px",
-  h7: "12px",
+  h7: "13px",
 };
 
 theme.FONT_WEIGHT = {
   thin: "100",
   regular: "400",
+  lightBold: "700",
   blod: "800",
 };
 

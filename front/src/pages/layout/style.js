@@ -1,37 +1,39 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { flexBeetween, flexCenter } from "../../styles/common";
+import { flexBeetween, flexCenterColumn } from "../../styles/common";
 
 const S = {};
-
-S.HaderWrapper = styled.div`
-  ${flexBeetween};
-  padding: 16px 18px 8px 30px;
+//layout
+S.PageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  flex-grow: 1;
+  width: 75rem;
+  margin: 0 auto;
 `;
 
-S.Wrapper = styled.div`
-  ${flexCenter}
-  gap:10px;
-`
+S.HaderWrapper = styled.header`
+  ${flexCenterColumn};
+  width: 100%;
+  position: sticky;
+  z-index: 100;
 
-S.Logo = styled(Link)`
-  color: ${({ theme }) => theme.PALETTE.primary["main"]};
-  font-size: 30px;
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT.blod};
+  & > div:first-child {
+    ${flexBeetween};
+    height: 96px;
+    width: 100%;
+  }
 `;
 
-S.SearchWrapper = styled.div`
-  background: #f5f5f5;
-  border: 1px solid rgba(0, 0, 0, 0.5%);
-  border-radius: 8px;
-  width: 260px;
-  padding: 5px;
-`;
-
-S.LoginBtn = styled(Link)`
-  color: #787878;
-  text-decoration: none;
-  font-size: 12px;
+//main
+S.MainWrapper = styled.div`
+  padding: 0 7.625rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 `;
 
 export default S;

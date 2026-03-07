@@ -1,11 +1,7 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
-import S from "./style";
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
-// import Footer from "./Footer";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Layout = () => {
+const MainContainer = () => {
   const mainCategories = [
     {
       id: 1,
@@ -62,28 +58,40 @@ const Layout = () => {
     },
   ];
 
-  const [activeCategory, setActiveCategory] = useState("");
-  const handleCategoryOnClick = (name) => {
-    setActiveCategory(name);
-  };
-
   return (
-    <S.PageWrapper>
-      <S.HaderWrapper>
-        <div>
-          <Header
-            mainCategories={mainCategories}
-            isActive={activeCategory}
-            handleCategoryOnClick={handleCategoryOnClick}
-          />
-        </div>
-      </S.HaderWrapper>
-      <S.MainWrapper>
-        <Outlet />
-      </S.MainWrapper>
-      <Footer />
-    </S.PageWrapper>
+    <div>
+      <div>
+        <nav>
+          <div>
+            <li>
+              <Link>추천</Link>
+            </li>
+            <li>
+              <Link>로맨스</Link>
+            </li>
+            <li>
+              <Link>드라마</Link>
+            </li>
+            <li>
+              <Link>판타지</Link>
+            </li>
+            <li>
+              <Link>액션</Link>
+            </li>
+            <li>
+              <Link>무협</Link>
+            </li>
+            <li>
+              <Link>공포/추리</Link>
+            </li>
+          </div>
+        </nav>
+      </div>
+      <div>
+        <Link to={"/docs"}>documentation</Link>
+      </div>
+    </div>
   );
 };
 
-export default Layout;
+export default MainContainer;

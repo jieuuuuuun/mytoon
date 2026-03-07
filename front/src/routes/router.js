@@ -1,7 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import MyTestNotFound from "../pages/templates/mytestnotfound/MyTestNotFound";
-import MyTestLayout from "../pages/templates/mytestlayout/MyTestLayout";
-import MyTestMainContainer from "../pages/templates/mytestmain/MyTestMainContainer";
 import MyTestContextContainer from "../pages/templates/mytestcontext/MyTestContextContainer";
 import MyTestDocs from "../pages/templates/mytestdocs/MyTestDocs";
 import MyTestParameterRead from "../pages/templates/mytesturlparameter/MyTestParameterRead";
@@ -9,6 +7,7 @@ import MyTestParameterContainer from "../pages/templates/mytesturlparameter/MyTe
 import MyTestQueryStringRead from "../pages/templates/mytestquerystring/MyTestQueryStringRead";
 import MyTestQueryStringContainer from "../pages/templates/mytestquerystring/MyTestQueryStringContainer";
 import Layout from "../pages/layout/Layout";
+import MainContainer from "../pages/main/MainContainer";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "", // == index: true
-        element: <MyTestMainContainer />
+        element: <MainContainer />
       },
     ]
   },

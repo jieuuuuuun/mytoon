@@ -91,15 +91,18 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
+  * {
+    box-sizing: border-box;
+    line-height: 1.4;
+  }
+
   body {
     font-family: 'pretendard';
-    /* font-weight: 900; */
-    box-sizing: border-box;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
     letter-spacing: -0.2px;
     text-decoration: none;
     color: #131313;
-    line-height: 1.3;
+    line-height: 1.4;
   }
 
   button {
@@ -116,7 +119,6 @@ const GlobalStyle = createGlobalStyle`
     background:none;
     border:none
   }
-
 
 `;
 export default GlobalStyle;

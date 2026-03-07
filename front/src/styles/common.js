@@ -6,6 +6,19 @@ export const flexCenter = css`
   justify-content: center;
   align-items: center;
 `
+
+export const flexLeft = css`
+  display: flex;
+  justify-content: left;
+  align-items: center;
+`
+
+export const flexRight = css`
+  display: flex;
+  justify-content: right;
+  align-items: center;
+`
+
 export const flexBeetween = css`
   display: flex;
   justify-content: space-between;
