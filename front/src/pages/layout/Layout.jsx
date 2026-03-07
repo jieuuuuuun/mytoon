@@ -24,7 +24,7 @@ const Layout = () => {
     {
       id: 2,
       name: "웹소설",
-      slug: "webnovel",
+      slug: "webnove",
       sub: [
         { id: 1, name: "추천", slug: "recommend" },
         { id: 2, name: "로맨스", slug: "romance" },

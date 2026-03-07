@@ -18,6 +18,18 @@ const router = createBrowserRouter([
         path: "", // == index: true
         element: <MainContainer />
       },
+      {
+        path: "/webnove",
+        element: <MainContainer />
+      },
+      {
+        path: "/ebook",
+        element: <MainContainer />
+      },
+      {
+        path: "/daily",
+        element: <MainContainer />
+      },
     ]
   },
   {
