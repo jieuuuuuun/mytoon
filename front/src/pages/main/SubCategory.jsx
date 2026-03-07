@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import S from "./style";
 
-const SubCategory = ({}) => {
+const SubCategory = ({ mainCategories }) => {
+  console.log(mainCategories);
+  const subCategoryList = mainCategories.map(({sub}, i) => {
+    <li>
+      <Link>추천</Link>
+    </li>;
+  });
   return (
     <S.SubCategoryWrapper>
-      <li>
-        <Link>추천</Link>
-      </li>
       <li>
         <Link>로맨스</Link>
       </li>
