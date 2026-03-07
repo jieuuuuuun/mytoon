@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { flexBeetween, flexCenterColumn } from "../../styles/common";
 

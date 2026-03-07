@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import S from "./style";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
+import SubCategory from "./subCategory/SubCategory";
 // import Footer from "./Footer";
 
 const Layout = () => {
@@ -10,9 +11,9 @@ const Layout = () => {
     {
       id: 1,
       name: "웹툰",
-      slug: "",
+      slug: "webtoon",
       sub: [
-        { id: 1, name: "추천", slug: "" },
+        { id: 1, name: "추천", slug: "recommend" },
         { id: 2, name: "로맨스", slug: "romance" },
         { id: 3, name: "판타지", slug: "fantasy" },
         { id: 4, name: "액션", slug: "action" },
@@ -24,7 +25,7 @@ const Layout = () => {
     {
       id: 2,
       name: "웹소설",
-      slug: "webnove",
+      slug: "webnovel",
       sub: [
         { id: 1, name: "추천", slug: "recommend" },
         { id: 2, name: "로맨스", slug: "romance" },
@@ -62,9 +63,19 @@ const Layout = () => {
     },
   ];
 
+  const { main, sub } = useParams();
+  console.log("main:", main, "sub:", sub);
+  
   const [activeCategory, setActiveCategory] = useState("웹툰");
-  const handleCategoryOnClick = (name) => {
+  const [activeSubCategory, setActiveSubCategory] = useState("추천");
+  const handleCategoryOnClick = (name, subList) => {
     setActiveCategory(name);
+    setActiveSubCategory(subList[0].name)
+  };
+  const handleSubCategoryOnClick = (name) => {
+    console.log(name);
+    setActiveSubCategory(name);
+    
   };
 
   return (
@@ -79,6 +90,11 @@ const Layout = () => {
         </div>
       </S.HaderWrapper>
       <S.MainWrapper>
+        <SubCategory
+          mainCategories={mainCategories}
+          isActive={activeSubCategory}
+          handleSubCategoryOnClick={handleSubCategoryOnClick}
+        />
         <Outlet />
       </S.MainWrapper>
       <Footer />
