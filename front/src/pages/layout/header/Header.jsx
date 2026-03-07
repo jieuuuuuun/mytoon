@@ -5,9 +5,10 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import S from "./style";
 
 const Header = ({ mainCategories, handleCategoryOnClick, isActive }) => {
-  const mainCategoryList = mainCategories.map(({ name }, i) => (
+  const mainCategoryList = mainCategories.map(({ name, slug }, i) => (
     <li key={i}>
       <S.Category
+        to={`/${slug}`}
         onClick={() => handleCategoryOnClick(name)}
         $isActive={isActive === name}
       >

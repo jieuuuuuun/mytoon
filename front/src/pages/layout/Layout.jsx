@@ -10,9 +10,9 @@ const Layout = () => {
     {
       id: 1,
       name: "웹툰",
-      slug: "webtoon",
+      slug: "",
       sub: [
-        { id: 1, name: "추천", slug: "recommend" },
+        { id: 1, name: "추천", slug: "" },
         { id: 2, name: "로맨스", slug: "romance" },
         { id: 3, name: "판타지", slug: "fantasy" },
         { id: 4, name: "액션", slug: "action" },
@@ -35,7 +35,7 @@ const Layout = () => {
     {
       id: 3,
       name: "도서",
-      slug: "book",
+      slug: "ebook",
       sub: [
         { id: 1, name: "추천", slug: "recommend" },
         { id: 2, name: "기획전", slug: "special" },
@@ -62,7 +62,7 @@ const Layout = () => {
     },
   ];
 
-  const [activeCategory, setActiveCategory] = useState("");
+  const [activeCategory, setActiveCategory] = useState("웹툰");
   const handleCategoryOnClick = (name) => {
     setActiveCategory(name);
   };
