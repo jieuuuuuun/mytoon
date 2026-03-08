@@ -1,16 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import S from "./style";
+import { useParams } from "react-router-dom";
 
 const Header = ({ mainCategories, handleCategoryOnClick, isActive }) => {
+  const {main} = useParams()
   const mainCategoryList = mainCategories.map(({ name, slug, sub },i) => (
     <li key={i}>
       <S.Category
-        to={`/${slug}`}
+        to={slug === "" ? "/" : `/${slug}`}
         onClick={() => handleCategoryOnClick(name, sub)}
-        $isActive={isActive === name}
+        $isActive={main === slug}
       >
         {name}
       </S.Category>

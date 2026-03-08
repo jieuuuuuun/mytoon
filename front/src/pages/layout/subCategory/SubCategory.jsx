@@ -8,7 +8,7 @@ const SubCategory = ({ mainCategories, isActive, handleSubCategoryOnClick}) => {
   const subCategoryList = currentCategory.sub.map(({name, slug}, i) => (
     <li key={i}>
       <S.SubCategory to={`/${main}/${slug}`}
-        $isActive={isActive === name}
+        $isActive={isActive ===name || sub === name}
         onClick={() => handleSubCategoryOnClick(name)}
       >{name}
       </S.SubCategory>
