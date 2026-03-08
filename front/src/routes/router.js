@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import MyTestNotFound from "../pages/templates/mytestnotfound/MyTestNotFound";
 import MyTestContextContainer from "../pages/templates/mytestcontext/MyTestContextContainer";
 import MyTestDocs from "../pages/templates/mytestdocs/MyTestDocs";
@@ -15,22 +15,18 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "", // == index: true
-        element: <MainContainer />
+        index: true,
+        element: <Navigate to="/webtoon/recommend" replace />,
       },
       {
-        path: "/webnove",
-        element: <MainContainer />
+        path: ":main",
+        element: <MainContainer />,
       },
       {
-        path: "/ebook",
-        element: <MainContainer />
+        path: ":main/:sub",
+        element: <MainContainer />,
       },
-      {
-        path: "/daily",
-        element: <MainContainer />
-      },
-    ]
+    ],
   },
   {
     path: "/docs",
@@ -38,30 +34,30 @@ const router = createBrowserRouter([
     children: [
       {
         path: "context", // == index: true
-        element: <MyTestContextContainer />
+        element: <MyTestContextContainer />,
       },
       {
         path: "url-parameter",
-        element: <MyTestParameterContainer />
+        element: <MyTestParameterContainer />,
       },
       {
         path: "url-parameter/:id",
-        element: <MyTestParameterRead />
+        element: <MyTestParameterRead />,
       },
       {
         path: "query-string",
-        element: <MyTestQueryStringContainer />
+        element: <MyTestQueryStringContainer />,
       },
       {
         path: "query-string/read",
-        element: <MyTestQueryStringRead />
-      }
-    ]
+        element: <MyTestQueryStringRead />,
+      },
+    ],
   },
   {
     path: "*",
-    element: <MyTestNotFound />
+    element: <MyTestNotFound />,
   },
-])
+]);
 
 export default router;
