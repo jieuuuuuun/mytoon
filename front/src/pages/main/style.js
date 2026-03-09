@@ -95,7 +95,8 @@ S.InfoWrapper = styled.div`
 //추천 타이틀
 S.ContentTitle = styled.div`
   ${flexBeetween};
-  padding: 0 0 10px 0;
+  padding: 10px 0 0 0;
+  height:50px;
 `
 
 export default S;

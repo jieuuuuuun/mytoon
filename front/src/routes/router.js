@@ -8,6 +8,7 @@ import MyTestQueryStringRead from "../pages/templates/mytestquerystring/MyTestQu
 import MyTestQueryStringContainer from "../pages/templates/mytestquerystring/MyTestQueryStringContainer";
 import Layout from "../pages/layout/Layout";
 import MainContainer from "../pages/main/MainContainer";
+import ContentDetail from "../pages/detail/ContentDetail";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: ":main/:sub",
         element: <MainContainer />,
+      },
+      {
+        path: ":main/:sub",
+        element: <MainContainer />,
+      },
+      {
+        path: "/content/:id",
+        element: <ContentDetail />,
       },
     ],
   },

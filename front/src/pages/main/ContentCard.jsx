@@ -1,8 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import S from "./style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {  useParams } from "react-router-dom";
 import ContentList from "./ContentList";
 
 const ContentCard = ({ contents }) => {
@@ -47,40 +44,30 @@ const ContentCard = ({ contents }) => {
   }
 
   const mainPageContentList = !main ? (
-    MAIN_SECTIONS.map((section) => {
+    MAIN_SECTIONS.map((section) =>
       section.sub.map((sub) => {
         const filterLsit = contents
           .filter((c) => c.main === section.main && c.sub === sub.key)
           .sort(() => Math.random() - 0.5)
           .slice(0, 6);
-          
+
         return (
           <ContentList
-            key={`추천 ${sub.label} ${section.label}`}
-            mainTitle={section.main}
-            subTitle={sub.key}
+            key={`${section.main}-${sub.key}`}
+            slug={`${section.main}/${sub.key}`}
+            title={`추천 ${sub.label} ${section.label}`}
             contentCardFilter={filterLsit}
           />
         );
-      });
-    })
+      })
+    )
   ) : (
     <ContentList contentCardFilter={contentCardFilter} />
   );
 
   return (
     <div>
-      <S.ContentTitle>
-        <div>
-          <span>추천 로맨스 웹툰</span>
-        </div>
-        <div>
-          <Link to={"/"}>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </Link>
-        </div>
-      </S.ContentTitle>
-      <S.CardWrapper>{mainPageContentList}</S.CardWrapper>
+      {mainPageContentList}
     </div>
   );
 };

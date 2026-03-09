@@ -1,35 +1,30 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import S from './style';
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+import S from "./style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-const ContentList = ({contentCardFilter, subTitle, mainTitle}) => {
-  const {main: currentMain, sub: currentSub} = useParams()
-
-  const mainPageContentList = contentCardFilter.map(
-    ({ title, thumbnail, views, main, id }) => {
-      return <div key={id} value={main}>
-        <Link>
-          <S.ContentWrapper>
-            <S.ImgWrapper>
-              <S.CardImg
-                src={`${process.env.PUBLIC_URL}/assets/content/${main}/img/${thumbnail}`}
-                alt={thumbnail}
-              />
-            </S.ImgWrapper>
-            <S.InfoWrapper>
-              <span>{title}</span>
-              <div>{views}</div>
-            </S.InfoWrapper>
-          </S.ContentWrapper>
+const ContentList = ({ contentCardFilter, title, slug }) => {
+  const { main: currentMain } = useParams();
+  const contentTitle = currentMain ? (
+    <></>
+  ) : (
+    <S.ContentTitle>
+      <div>
+        <span>{title}</span>
+      </div>
+      <div>
+        <Link to={`/${slug}`}>
+          <FontAwesomeIcon icon={faAngleRight} />
         </Link>
       </div>
-    },
+    </S.ContentTitle>
   );
 
   const contentList = contentCardFilter.map(
     ({ title, thumbnail, views, main, id }) => (
       <div key={id}>
-        <Link>
+        <Link to={`/content/${id}`}>
           <S.ContentWrapper>
             <S.ImgWrapper>
               <S.CardImg
@@ -47,9 +42,10 @@ const ContentList = ({contentCardFilter, subTitle, mainTitle}) => {
     ),
   );
   return (
-    <>
-      { !currentMain ? mainPageContentList:contentList}
-    </>
+    <div>
+      {contentTitle}
+      <S.CardWrapper>{contentList}</S.CardWrapper>
+    </div>
   );
 };
 
