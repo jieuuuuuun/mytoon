@@ -64,23 +64,18 @@ const Layout = () => {
       ],
     },
   ];
-  
-  useEffect(() => {}, [])
-  const { main } = useParams();
-  console.log(main);
-  
+
+  const { main} = useParams();
+
   const [activeCategory, setActiveCategory] = useState("");
   const [activeSubCategory, setActiveSubCategory] = useState("");
-
+  
   const handleCategoryOnClick = (name, subList) => {
-    console.log("headersub",subList)
     setActiveCategory(name);
-
     setActiveSubCategory(subList?.[0]?.name || "");
   };
 
   const handleSubCategoryOnClick = (name) => {
-    console.log(name);
     setActiveSubCategory(name);
   };
 
@@ -90,7 +85,6 @@ const Layout = () => {
         <div>
           <Header
             mainCategories={mainCategories}
-            isActive={activeCategory}
             handleCategoryOnClick={handleCategoryOnClick}
           />
         </div>
@@ -98,7 +92,6 @@ const Layout = () => {
       <S.MainWrapper>
         {main && (<SubCategory
           mainCategories={mainCategories}
-          isActive={activeSubCategory}
           handleSubCategoryOnClick={handleSubCategoryOnClick}
         />)}
         <Outlet />
