@@ -1,36 +1,88 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import S from "./style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import ContentList from "./ContentList";
 
 const ContentCard = ({ contents }) => {
-  const { main, sub } = useParams();
-  const contentCardFilter =
-    contents.filter((c) => c.main === main) ||
-    contents.filter((c) => c.main === main && c.sub === sub);
-  console.log("contentCard", main, sub);
+  const { main, sub: currentSub } = useParams();
+  const MAIN_SECTIONS = [
+    {
+      main: "webtoon",
+      label: "웹툰",
+      sub: [
+        { key: "romance", label: "로맨스" },
+        { key: "fantasy", label: "판타지" },
+        { key: "action", label: "액션" },
+        { key: "murim", label: "무협" },
+        { key: "horror-mystery", label: "공포/추리" },
+        { key: "drama", label: "드라마" },
+      ],
+    },
+    {
+      main: "webnovel",
+      label: "웹소설",
+      sub: [
+        { key: "romance", label: "로맨스" },
+        { key: "romance-fantasy", label: "로판" },
+        { key: "fantasy", label: "판타지" },
+      ],
+    },
+  ];
 
-  const contentList = contentCardFilter
-    .slice(0, 6)
-    .map(({ title, thumbnail, views, main }, i) => (
-      <div key={i}>
-        <Link>
-          <S.ContentWrapper>
-            <S.ImgWrapper>
-              <S.CardImg
-                src={`${process.env.PUBLIC_URL}/assets/content/${main}/img/${thumbnail}`}
-                alt={thumbnail}
-              />
-            </S.ImgWrapper>
-            <S.InfoWrapper>
-              <span>{title}</span>
-              <div>{views}</div>
-            </S.InfoWrapper>
-          </S.ContentWrapper>
-        </Link>
-      </div>
-    ));
+  //"/" 일 경우
+  //웹툰 웹소설 카테고리 만
+  //예시) "추천 로맨스 웹툰" 로 타이틀이 노출되고 랜덤으로 6개씩 노출된다.
 
-  return <S.CardWrapper>{contentList}</S.CardWrapper>;
+  let contentCardFilter = [];
+  if (main === "daily") {
+    contentCardFilter = contents.filter((c) => c.day === currentSub);
+  } else if (!main) {
+    contentCardFilter = contents;
+  } else {
+    contentCardFilter = contents.filter(
+      (c) => c.main === main && c.sub === currentSub,
+    );
+  }
+
+  const mainPageContentList = !main ? (
+    MAIN_SECTIONS.map((section) => {
+      section.sub.map((sub) => {
+        const filterLsit = contents
+          .filter((c) => c.main === section.main && c.sub === sub.key)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 6);
+          
+        return (
+          <ContentList
+            key={`추천 ${sub.label} ${section.label}`}
+            mainTitle={section.main}
+            subTitle={sub.key}
+            contentCardFilter={filterLsit}
+          />
+        );
+      });
+    })
+  ) : (
+    <ContentList contentCardFilter={contentCardFilter} />
+  );
+
+  return (
+    <div>
+      <S.ContentTitle>
+        <div>
+          <span>추천 로맨스 웹툰</span>
+        </div>
+        <div>
+          <Link to={"/"}>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </Link>
+        </div>
+      </S.ContentTitle>
+      <S.CardWrapper>{mainPageContentList}</S.CardWrapper>
+    </div>
+  );
 };
 
 export default ContentCard;

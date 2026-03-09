@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { flexBeetween } from "../../styles/common";
 
 const S = {};
 
@@ -90,5 +91,11 @@ S.InfoWrapper = styled.div`
     font-weight: 400;
   }
 `;
+
+//추천 타이틀
+S.ContentTitle = styled.div`
+  ${flexBeetween};
+  padding: 0 0 10px 0;
+`
 
 export default S;

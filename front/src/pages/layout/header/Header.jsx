@@ -1,21 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import S from "./style";
+import { useParams } from "react-router-dom";
 
-const Header = ({ mainCategories, handleCategoryOnClick, isActive }) => {
-  const mainCategoryList = mainCategories.map(({ name, slug, sub },i) => (
-    <li key={i}>
+const Header = ({ mainCategories, handleCategoryOnClick }) => {
+  const {main} = useParams()
+
+  const mainCategoryList = mainCategories.map(({ name, slug, sub },i) => {
+
+    const isActiveCategory = (name === "추천" && !main) || main === slug;
+
+    return <li key={i}>
       <S.Category
-        to={`/${slug}`}
+        to={slug === "" ? "/" : `/${slug}/${sub?.[0]?.slug}`}
         onClick={() => handleCategoryOnClick(name, sub)}
-        $isActive={isActive === name}
+        $isActive={isActiveCategory}
       >
         {name}
       </S.Category>
     </li>
-  ));
+});
+
   return (
     <>
       <S.Wrapper>

@@ -15,8 +15,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        index: true,
-        element: <Navigate to="/webtoon/recommend" replace />,
+        index: true, // 메인 추천 페이지
+        element: <MainContainer />,
       },
       {
         path: ":main",

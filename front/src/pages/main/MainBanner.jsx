@@ -4,14 +4,10 @@ import S from "./style";
 
 const MainBanner = ({ mainBanner }) => {
   const { main, sub } = useParams();
-  console.log("main:", main, "sub", sub);
-  console.log("mainBanner", mainBanner);
-
-  const categoryfilter =
-    mainBanner.filter((c) => c.main === main) || mainBanner[0];
-
-  const mainBannerList = categoryfilter.map(({title, img, slug}, i) => (
-    <li key={i}>
+  
+  const categoryfilter = !main ? mainBanner : mainBanner.filter((c) => c.main === main)
+  const mainBannerList = categoryfilter.map(({title, img, slug}, i) => {
+    return <li key={i}>
       <Link to={slug}>
         <div>
           <S.MainBannerImg
@@ -24,7 +20,8 @@ const MainBanner = ({ mainBanner }) => {
         </S.TitleWrapper>
       </Link>
     </li>
-  ));
+  });
+
   return (
     <div>
       <S.MainBannerWrapper>
