@@ -8,7 +8,7 @@ import MyTestQueryStringRead from "../pages/templates/mytestquerystring/MyTestQu
 import MyTestQueryStringContainer from "../pages/templates/mytestquerystring/MyTestQueryStringContainer";
 import Layout from "../pages/layout/Layout";
 import MainContainer from "../pages/main/MainContainer";
-import ContentDetail from "../pages/detail/ContentDetail";
+import DetailContainer from "../pages/detail/DetailContainer";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/content/:id",
-        element: <ContentDetail />,
+        element: <DetailContainer />,
       },
     ],
   },

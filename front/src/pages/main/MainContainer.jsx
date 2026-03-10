@@ -3,7 +3,7 @@ import S from "./style";
 import { Link, useParams } from "react-router-dom";
 import MainBanner from "./MainBanner";
 import ContentCard from "./ContentCard";
-import contentData from "../../contentData/contentData";
+import {contents} from "../../data/contentData"
 
 const MainContainer = () => {
   const mainBanner = [
@@ -48,7 +48,7 @@ const MainContainer = () => {
     <div>
       {main === "daily" ? <></> : <MainBanner mainBanner={mainBanner} />}
       <div>
-        <ContentCard contents={contentData} />
+        <ContentCard contents={contents} />
       </div>
     </div>
   );

@@ -44,6 +44,14 @@ export const flexCenterRow = css`
   align-items: center;
   flex-direction: row;
 `
+export const flexRow = css`
+  display: flex;
+  flex-direction: row;
+`
+export const flexColumn = css`
+  display: flex;
+  flex-direction: column;
+`
 
 export const flexCenterColumn = css`
   display: flex;
