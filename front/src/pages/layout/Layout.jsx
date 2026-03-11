@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import S from "./style";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
@@ -66,6 +66,7 @@ const Layout = () => {
   ];
 
   const { main} = useParams();
+  const currentPage = useLocation().pathname;
 
   const [activeCategory, setActiveCategory] = useState("");
   const [activeSubCategory, setActiveSubCategory] = useState("");
@@ -82,12 +83,12 @@ const Layout = () => {
   return (
     <S.PageWrapper>
       <S.HaderWrapper>
-        <div>
+        <S.HeaderInner $justifyContent={(currentPage === "/login") || (currentPage === "/join") ? "center" : "space-between"}>
           <Header
             mainCategories={mainCategories}
             handleCategoryOnClick={handleCategoryOnClick}
           />
-        </div>
+        </S.HeaderInner>
       </S.HaderWrapper>
       <S.MainWrapper>
         {main && (<SubCategory

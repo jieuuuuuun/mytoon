@@ -2,44 +2,52 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import S from "./style";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const Header = ({ mainCategories, handleCategoryOnClick }) => {
-  const {main} = useParams()
+  const { main: mainCategory } = useParams();
+  const currentPage = useLocation().pathname;
+  
+  const mainCategoryList = mainCategories.map(({ name, slug, sub }, i) => {
+    const isActiveCategory = (name === "추천" && !mainCategory) || mainCategory === slug;
+    return (
+      <li key={i}>
+        <S.Category
+          to={slug === "" ? "/" : `/${slug}/${sub?.[0]?.slug}`}
+          onClick={() => handleCategoryOnClick(name, sub)}
+          $isActive={isActiveCategory}
+        >
+          {name}
+        </S.Category>
+      </li>
+    );
+  });
 
-  const mainCategoryList = mainCategories.map(({ name, slug, sub },i) => {
+  const header =
+    (currentPage === "/login") || (currentPage === "/join") ? (
+      <>
+        <S.Logo to={"/"} >JBOOK</S.Logo>
+      </>
+    ) : (
+      <>
+        <S.Wrapper>
+          <S.Logo to={"/"} >JBOOK</S.Logo>
+          <S.CategoryWrapper>{mainCategoryList}</S.CategoryWrapper>
+        </S.Wrapper>
+        <S.Wrapper>
+          <S.SearchWrapper>
+            <form>
+              <FontAwesomeIcon icon={faMagnifyingGlass} color="#a5a5a5" />
+              <input type="text" />
+              <button></button>
+            </form>
+          </S.SearchWrapper>
+          <S.LoginBtn to={"/login"}>로그인/회원가입</S.LoginBtn>
+        </S.Wrapper>
+      </>
+    );
 
-    const isActiveCategory = (name === "추천" && !main) || main === slug;
-
-    return <li key={i}>
-      <S.Category
-        to={slug === "" ? "/" : `/${slug}/${sub?.[0]?.slug}`}
-        onClick={() => handleCategoryOnClick(name, sub)}
-        $isActive={isActiveCategory}
-      >
-        {name}
-      </S.Category>
-    </li>
-});
-
-  return (
-    <>
-      <S.Wrapper>
-        <S.Logo to={"/"}>JBOOK</S.Logo>
-        <S.CategoryWrapper>{mainCategoryList}</S.CategoryWrapper>
-      </S.Wrapper>
-      <S.Wrapper>
-        <S.SearchWrapper>
-          <form>
-            <FontAwesomeIcon icon={faMagnifyingGlass} color="#a5a5a5" />
-            <input type="text" />
-            <button></button>
-          </form>
-        </S.SearchWrapper>
-        <S.LoginBtn to={"/login"}>로그인/회원가입</S.LoginBtn>
-      </S.Wrapper>
-    </>
-  );
+  return <>{header}</>;
 };
 
 export default Header;
