@@ -83,7 +83,7 @@ const Layout = () => {
   return (
     <S.PageWrapper>
       <S.HaderWrapper>
-        <S.HeaderInner $justifyContent={currentPage === "/login" || "/join" ? "center" : "space-between"}>
+        <S.HeaderInner $justifyContent={(currentPage === "/login") || (currentPage === "/join") ? "center" : "space-between"}>
           <Header
             mainCategories={mainCategories}
             handleCategoryOnClick={handleCategoryOnClick}
