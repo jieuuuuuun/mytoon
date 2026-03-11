@@ -988,7 +988,7 @@ export const contents = [
     rating: 8.8,
     day: "mon",
     description: "천하제일검을 찾기 위한 여정.",
-    keywords: ["검", "무협"],
+    keywords: ["검", "무협", "머친킨"],
     thumbnail: "webtoon_21.jpg",
   },
   {
@@ -1727,8 +1727,9 @@ export const contents = [
     views: 280000,
     rating: 8.9,
     day:"sat",
-    description: "마나 없이 지식으로 성장하는 마법사.",
-    keywords: ["판타지", "마법"],
+    description: "마나가 없는 몸으로 태어난 소년.\n하지만 누구보다 집요한 노력과 방대한 지식으로 마법의 원리를 파헤치며 성장해 나간다.\n재능이 아닌 연구와 전략으로 강자들과 맞서는 새로운 형태의 마법사의 이야기.",
+    keywords: ["판타지", "마법사", "머치킨", "환생", "성장물", "노력", "퓨전", "생존","천재",
+    "이세계", "마법연구", "전략", "지식"],
     thumbnail: "webnovel_11.jpg",
   },
   {

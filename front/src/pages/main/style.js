@@ -3,6 +3,7 @@ import { flexBeetween } from "../../styles/common";
 
 const S = {};
 
+//mainbanner
 S.MainBannerWrapper = styled.div`
   width: 956px;
   overflow: hidden;

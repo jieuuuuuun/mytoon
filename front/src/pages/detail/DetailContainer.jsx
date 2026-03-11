@@ -11,31 +11,61 @@ import { type } from "@testing-library/user-event/dist/type";
 const DetailContainer = () => {
   const { id: currentId } = useParams();
   const [searchParams] = useSearchParams();
+
+  //홈, 정보 탭 쿼리 값
   const currentTap = searchParams.get("tap_type");
 
+  //전체데이터
   const datas = contents;
+  //현재 선택된 데이터
   const selectedData = datas.find((data) => data.id === Number(currentId));
 
+  //연재요일 한글 상수
   const dayData = DAY;
+  //카테고리 한글 상수
   const categoryData = MAIN_SECTIONS;
+  //선택된 데이터의 영문 메인카테고리와 한글 상수 카테고리에서 찾기
   const selectMainCategory = categoryData.find(
     (section) => section.main === selectedData.main,
   )?.label;
 
+ //선택된 데이터의 영문 서브카테고리와 한글 상수 카테고리에서 찾기
   const selectSubCategory = categoryData
     .find((section) => section.main === selectedData.main)
     .sub.find((sub) => sub.key === selectedData.sub)?.label;
 
+  //전체데이터에서 선택된 데이터의 작가와 같은 다른 작품 필터
   const authorFilter = datas.filter(
     (data) =>
       data.id !== selectedData.id &&
       data.author.some((author) => selectedData.author.includes(author)),
   );
 
-  console.log(authorFilter);
-
+  //키워드 모양 가공
+  const keywords = selectedData.keywords.map((keyword,i) => {
+    return (
+      <li>
+        <S.KeywordLink key={i} to={`/search/themekeyword?filterList=${keyword}`}>
+          <div>
+            <span>{`#${keyword}`}</span>
+          </div>
+        </S.KeywordLink>
+      </li>
+    );
+  });
+  
+  //선택된 데이터의 작가의 다른 작품리스트 가공
   const otherWorksByauthor = authorFilter.map(
-    ({ id, title, main, views, thumbnail }, i) => (
+    ({ id, title, main, views, thumbnail }, i) => {
+      const mainKor = categoryData.find((c) => c.main === main).label;
+      let formattedViews = views;
+      if(views < 10000) {
+        return formattedViews = views.toLocaleString('ko-KR')
+      } else {
+        formattedViews = (views / 10000).toFixed(1).replace(/\.0$/, '') + "만";
+      }
+      
+      return (
       <li key={i}>
         <div>
           <Link to={`/content/${id}`}>
@@ -45,20 +75,23 @@ const DetailContainer = () => {
                 alt=""
               />
             </S.AuthorImgWrapper>
-            <div>{title}</div>
-            <div>
-              <div>{main}</div>
-              <div>{views}</div>
-            </div>
+            <S.AuthorInfoWrapper>
+              <S.AuthorTitle>{title}</S.AuthorTitle>
+              <S.AuthorMainEndViews>
+                <div>{mainKor}</div>
+                <div>{formattedViews}</div>
+              </S.AuthorMainEndViews>
+            </S.AuthorInfoWrapper>
           </Link>
         </div>
       </li>
-    ),
+    )},
   );
 
   return (
     <div>
       <S.Container>
+
         <S.ContentWrapper>
           <ContentImage selectedData={selectedData} />
           <ContentInfo
@@ -68,6 +101,7 @@ const DetailContainer = () => {
             dayData={dayData}
           />
         </S.ContentWrapper>
+
         <S.TapBg>
           <S.TapWrapper>
             <S.TapBtn>
@@ -79,35 +113,37 @@ const DetailContainer = () => {
           </S.TapWrapper>
 
           <S.TapContainer>
-
-            <S.TapContentWrapper>
+            <div>
               <S.ContentTitleWrapper>
                 <S.ContentTitle>줄거리</S.ContentTitle>
               </S.ContentTitleWrapper>
               <S.DescriptionWrapper>
                 <div>{selectedData.description}</div>
               </S.DescriptionWrapper>
-            </S.TapContentWrapper>
+            </div>
 
-            <S.TapContentWrapper>
+            <div>
               <S.ContentTitleWrapper>
                 <S.ContentTitle>키워드</S.ContentTitle>
               </S.ContentTitleWrapper>
-              <div>{selectedData.keywords}</div>
-            </S.TapContentWrapper>
-            
-            <S.TapContentWrapper>
-              <S.ContentTitleWrapper>
-                <S.ContentTitle>이 작 가의 다른 작품</S.ContentTitle>
-              </S.ContentTitleWrapper>
+              <S.KeywordUl>{keywords}</S.KeywordUl>
+            </div>
+
+            {authorFilter.length === 0 ? (
+              <></>
+            ) : (
               <div>
-                <S.AuthorUl>{otherWorksByauthor}</S.AuthorUl>
+                <S.ContentTitleWrapper>
+                  <S.ContentTitle>이 작 가의 다른 작품</S.ContentTitle>
+                </S.ContentTitleWrapper>
+                <div>
+                  <S.AuthorUl>{otherWorksByauthor}</S.AuthorUl>
+                </div>
               </div>
-            </S.TapContentWrapper>
-
+            )}
           </S.TapContainer>
-
         </S.TapBg>
+
       </S.Container>
     </div>
   );
