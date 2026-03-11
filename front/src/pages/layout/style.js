@@ -18,12 +18,14 @@ S.HaderWrapper = styled.header`
   width: 100%;
   position: sticky;
   z-index: 100;
+`;
 
-  & > div:first-child {
-    ${flexBeetween};
-    height: 96px;
-    width: 100%;
-  }
+S.HeaderInner = styled.div`
+  display: flex;
+  justify-content: ${(props) => props.$justifyContent};
+  align-items:center;
+  height: 96px;
+  width: 100%;
 `;
 
 //main

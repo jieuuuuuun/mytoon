@@ -38,6 +38,11 @@ export const flexBeetweenColumn = css`
   flex-direction: column;
 `
 
+export const flexColumn = css`
+  display: flex;
+  flex-direction: column;
+`
+
 export const flexCenterRow = css`
   display: flex;
   justify-content: center;

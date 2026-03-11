@@ -8,6 +8,8 @@ import MyTestQueryStringRead from "../pages/templates/mytestquerystring/MyTestQu
 import MyTestQueryStringContainer from "../pages/templates/mytestquerystring/MyTestQueryStringContainer";
 import Layout from "../pages/layout/Layout";
 import MainContainer from "../pages/main/MainContainer";
+import Login from "../pages/login/Login";
+import Join from "../pages/join/Join";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,17 @@ const router = createBrowserRouter([
         path: ":main/:sub",
         element: <MainContainer />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/join",
+        element: <Join />,
+      },
     ],
   },
+
   {
     path: "/docs",
     element: <MyTestDocs />,
