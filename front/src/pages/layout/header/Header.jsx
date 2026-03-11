@@ -24,7 +24,7 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
   });
 
   const header =
-    currentPage === "/login" || "/join" ? (
+    (currentPage === "/login") || (currentPage === "/join") ? (
       <>
         <S.Logo to={"/"} >JBOOK</S.Logo>
       </>

@@ -4,9 +4,11 @@ import S from "./style";
 
 const Footer = () => {
   const currentPage = useLocation().pathname;
+  console.log(currentPage);
+  
   return (
     <>
-      {currentPage === "/login" || "/join" ? <></> : (<S.FooterWrapper>
+      {(currentPage === "/login") || (currentPage === "/join") ? <></> : (<S.FooterWrapper>
         <div>
           <nav>
             <S.FooterMenu>
