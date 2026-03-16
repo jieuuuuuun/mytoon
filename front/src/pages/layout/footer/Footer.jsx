@@ -4,7 +4,6 @@ import S from "./style";
 
 const Footer = () => {
   const currentPage = useLocation().pathname;
-  console.log(currentPage);
   
   return (
     <>

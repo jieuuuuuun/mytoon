@@ -1,6 +1,5 @@
 import React from "react";
-import S from "./style";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import MainBanner from "./MainBanner";
 import ContentCard from "./ContentCard";
 import {contents} from "../../data/contentData"
@@ -11,34 +10,34 @@ const MainContainer = () => {
     {
       id: 1,
       main: "webtoon",
-      sub: "recommend",
+      sub: "romance",
       title: "jbook 웹툰 신간 출시",
-      slug: "/webtoon/recommend",
-      img: "main_banner_01.webp",
+      slug: "/webtoon/romance",
+      img: "main_banner_09.jpg",
     },
     {
       id: 2,
       main: "webnovel",
-      sub: "recommend",
+      sub: "romance",
       title: "jbook 웹소설 신간 출시",
-      slug: "/webnovel/recommend",
-      img: "main_banner_01.webp",
+      slug: "/webnovel/romance",
+      img: "main_banner_03.jpg",
     },
     {
       id: 3,
       main: "ebook",
-      sub: "recommend",
+      sub: "business-economy",
       title: "jbook 도서 신간 출시",
-      slug: "/ebook/recommend",
-      img: "main_banner_01.webp",
+      slug: "/ebook/business-economy",
+      img: "main_banner_04.png",
     },
     {
       id: 4,
       main: "webtoon",
-      sub: "recommend",
+      sub: "action",
       title: "jbook 웹툰 신간 출시2",
-      slug: "/webtoon/recommend",
-      img: "main_banner_01.webp",
+      slug: "/webtoon/action",
+      img: "main_banner_08.jpg",
     },
   ];
 

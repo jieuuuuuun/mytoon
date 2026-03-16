@@ -65,12 +65,12 @@ const Layout = () => {
     },
   ];
 
-  const { main} = useParams();
+  const { main : currentMain} = useParams();
   const currentPage = useLocation().pathname;
 
   const [activeCategory, setActiveCategory] = useState("");
   const [activeSubCategory, setActiveSubCategory] = useState("");
-  
+
   const handleCategoryOnClick = (name, subList) => {
     setActiveCategory(name);
     setActiveSubCategory(subList?.[0]?.name);
@@ -91,7 +91,7 @@ const Layout = () => {
         </S.HeaderInner>
       </S.HaderWrapper>
       <S.MainWrapper>
-        {main && (<SubCategory
+        {currentMain && (<SubCategory
           mainCategories={mainCategories}
           handleSubCategoryOnClick={handleSubCategoryOnClick}
         />)}

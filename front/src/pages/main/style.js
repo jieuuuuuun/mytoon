@@ -11,6 +11,17 @@ S.MainBannerWrapper = styled.div`
   height: 375px;
   position: relative;
   margin: 0 0 20px 0;
+
+  .bannerSwiper {
+    height:100%;
+    width:100%;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 55%;
+    transform: translateY(-50%);
+  }
 `;
 
 S.MainBannerImg = styled.img`
