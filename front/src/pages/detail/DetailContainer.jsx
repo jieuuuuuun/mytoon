@@ -17,13 +17,16 @@ const DetailContainer = () => {
 
   //전체데이터
   const datas = contents;
+  
   //현재 선택된 데이터
   const selectedData = datas.find((data) => data.id === Number(currentId));
 
   //연재요일 한글 상수
   const dayData = DAY;
+
   //카테고리 한글 상수
   const categoryData = MAIN_SECTIONS;
+
   //선택된 데이터의 영문 메인카테고리와 한글 상수 카테고리에서 찾기
   const selectMainCategory = categoryData.find(
     (section) => section.main === selectedData.main,
@@ -33,13 +36,6 @@ const DetailContainer = () => {
   const selectSubCategory = categoryData
     .find((section) => section.main === selectedData.main)
     .sub.find((sub) => sub.key === selectedData.sub)?.label;
-
-  //전체데이터에서 선택된 데이터의 작가와 같은 다른 작품 필터
-  const authorFilter = datas.filter(
-    (data) =>
-      data.id !== selectedData.id &&
-      data.author.some((author) => selectedData.author.includes(author)),
-  );
 
   //키워드 모양 가공
   const keywords = selectedData.keywords.map((keyword,i) => {
@@ -53,8 +49,15 @@ const DetailContainer = () => {
       </li>
     );
   });
+
+  //전체데이터에서 선택된 데이터의 작가와 같은 다른 작품 필터
+  const authorFilter = datas.filter(
+    (data) =>
+      data.id !== selectedData.id &&
+      data.author.some((author) => selectedData.author.includes(author)),
+  );
   
-  //선택된 데이터의 작가의 다른 작품리스트 가공
+  //선택된 데이터의 작가의 다른 작품데이터 가공
   const otherWorksByauthor = authorFilter.map(
     ({ id, title, main, views, thumbnail }, i) => {
       const mainKor = categoryData.find((c) => c.main === main).label;

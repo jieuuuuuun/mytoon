@@ -10,6 +10,7 @@ import Layout from "../pages/layout/Layout";
 import MainContainer from "../pages/main/MainContainer";
 import Login from "../pages/login/Login";
 import Join from "../pages/join/Join";
+import DetailContainer from "../pages/detail/DetailContainer";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: ":main/:sub",
         element: <MainContainer />,
+      },
+      {
+        path: "content/:id",
+        element: <DetailContainer />,
       },
       {
         path: "/login",
