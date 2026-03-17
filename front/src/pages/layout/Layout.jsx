@@ -41,12 +41,11 @@ const Layout = () => {
       name: "도서",
       slug: "ebook",
       sub: [
-        { id: 1, name: "기획전", slug: "special" },
-        { id: 2, name: "소설", slug: "novel" },
-        { id: 3, name: "인문/사회/역사", slug: "humanities-social-history" },
-        { id: 4, name: "경영/경제", slug: "business-economy" },
-        { id: 5, name: "에세이/시", slug: "essay-poetry" },
-        { id: 6, name: "자기계발", slug: "self-development" },
+        { id: 1, name: "소설", slug: "novel" },
+        { id: 2, name: "인문/사회/역사", slug: "humanities-social-history" },
+        { id: 3, name: "경영/경제", slug: "business-economy" },
+        { id: 4, name: "에세이/시", slug: "essay-poetry" },
+        { id: 5, name: "자기계발", slug: "self-development" },
       ],
     },
     {

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {
+  flexCenter,
   flexCenterColumn,
   flexColumn,
   flexLeft,
@@ -43,8 +44,8 @@ S.DescriptionWrapper = styled.div`
   display: flex;
   width: 100%;
 
-  & div{
-    font-size:12px;
+  & div {
+    font-size: 12px;
     white-space: pre-line;
   }
 `;
@@ -61,7 +62,7 @@ S.TapContainer = styled.div`
     padding: 0 0 10px 0;
   }
 
-  & > div:nth-child(n+2) {
+  & > div:nth-child(n + 2) {
     background-color: #f7f7f7;
     width: 100%;
     border-radius: 12px;
@@ -76,7 +77,6 @@ S.TapBg = styled.div`
   width: 632px;
 `;
 
-
 S.TapWrapper = styled.div`
   ${flexLeft}
   align-items:center;
@@ -90,6 +90,9 @@ S.TapBtn = styled.div`
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.PALETTE.gray["400"]};
   font-size: 12px;
+  background-color: ${({$isActive, theme}) => (
+    $isActive ? theme.PALETTE.primary["main"] : "inherit"
+  )}
 `;
 
 //author
@@ -139,27 +142,50 @@ S.AuthorMainEndViews = styled.div`
 
 //keyword
 S.KeywordUl = styled.ul`
-  display:flex;
+  display: flex;
   padding: 0 18px 10px 18px;
-  flex-wrap:wrap;
-  width:100%;
-  gap:10px;
-`
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+`;
 
 S.KeywordLink = styled(Link)`
   & div {
-    height:28px;
+    height: 28px;
     padding: 0 12px;
     background-color: #0000000d;
-    border-radius:8px;
-    display:flex;
-    align-items:center;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
   }
 
   & span {
-    font-size:12px;
-    font-weight:500
+    font-size: 12px;
+    font-weight: 500;
   }
+`;
+
+//episode
+S.EpisodeContainer = styled.li`
+  margin: 0 11px 8px 11px;
 `
+
+S.EpisodeWrapper = styled.div`
+  display:flex;
+  align-items:center;
+`
+
+S.EpisodeImgWrapper = styled.div`
+  width: 56px;
+  border-radius: 6px;
+  overflow: hidden;
+  display:flex;
+`;
+
+S.EpisodeImg = styled.img`
+  width: 100%;
+  object-fit: cover;
+  
+`;
 
 export default S;

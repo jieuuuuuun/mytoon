@@ -1,4 +1,3 @@
-
 const MAIN_SECTIONS = [
     {
       main: "webtoon",
@@ -19,6 +18,17 @@ const MAIN_SECTIONS = [
         { key: "romance", label: "로맨스" },
         { key: "romance-fantasy", label: "로판" },
         { key: "fantasy", label: "판타지" },
+      ],
+    },
+    {
+      main: "ebook",
+      label: "도서",
+      sub: [
+        {  key: "novel", label: "소설" },
+        {  key: "humanities-social-history" , label: "인문/사회/역사" },
+        {  key: "business-economy", label: "경영/경제"},
+        {  key: "essay-poetry", label: "에세이/시" },
+        {  key: "self-development", label: "자기계발" },
       ],
     },
   ];
