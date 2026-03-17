@@ -155,6 +155,8 @@ const DetailContainer = () => {
     },
   );
 
+  console.log(episodeList);
+  
   return (
     <div>
       <S.Container>
@@ -174,7 +176,13 @@ const DetailContainer = () => {
           <S.TapContainer>
             <div>
               {currentTap !== "about" ? (
-                <ul>{episodeList}</ul>
+                <ul>{episodeList.length === 0 ? (
+                  <li>
+                    <div>현재 등록된 에피소드가 없습니다.</div>
+                  </li>
+                ) : (
+                  episodeList
+                )}</ul>
               ) : (
                 <>
                   <S.ContentTitleWrapper>
