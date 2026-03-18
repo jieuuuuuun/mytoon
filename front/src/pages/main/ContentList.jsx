@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const ContentList = ({ contentCardFilter, title, slug }) => {
-  const { main: currentMain } = useParams();
-  const contentTitle = currentMain ? (
+  const { main: currentMain, type: searchTyp } = useParams();
+  const contentTitle = currentMain || searchTyp ? (
     <></>
   ) : (
     <S.ContentTitle>

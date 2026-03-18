@@ -4,8 +4,10 @@ import ContentList from "./ContentList";
 import MAIN_SECTIONS from "../../data/category";
 
 const ContentCard = ({ contents }) => {
-  const { main, sub: currentSub } = useParams();
+  const { main, sub: currentSub, type: searchType } = useParams();
   const mainSections = MAIN_SECTIONS
+  console.log("ContentCard", searchType);
+  
 
   //"/" 일 경우
   //웹툰 웹소설 카테고리 만
@@ -22,7 +24,7 @@ const ContentCard = ({ contents }) => {
     );
   }
 
-  const mainPageContentList = !main ? (
+  const mainPageContentList = !main && !searchType ? (
     mainSections.map((section) =>
       section.sub.map((sub) => {
         const filterLsit = contents

@@ -1,15 +1,17 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import S from "./style";
 import { useLocation, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useForm } from "react-hook-form";
 
 const Header = ({ mainCategories, handleCategoryOnClick }) => {
   const { main: mainCategory } = useParams();
   const currentPage = useLocation().pathname;
   
   const mainCategoryList = mainCategories.map(({ name, slug, sub }, i) => {
-    const isActiveCategory = (name === "추천" && !mainCategory) || mainCategory === slug;
+    const isActiveCategory =
+      (name === "추천" && !mainCategory) || mainCategory === slug;
     return (
       <li key={i}>
         <S.Category
@@ -24,14 +26,14 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
   });
 
   const header =
-    (currentPage === "/login") || (currentPage === "/join") ? (
+    currentPage === "/login" || currentPage === "/join" ? (
       <>
-        <S.Logo to={"/"} >JBOOK</S.Logo>
+        <S.Logo to={"/"}>JBOOK</S.Logo>
       </>
     ) : (
       <>
         <S.Wrapper>
-          <S.Logo to={"/"} >JBOOK</S.Logo>
+          <S.Logo to={"/"}>JBOOK</S.Logo>
           <S.CategoryWrapper>{mainCategoryList}</S.CategoryWrapper>
         </S.Wrapper>
         <S.Wrapper>

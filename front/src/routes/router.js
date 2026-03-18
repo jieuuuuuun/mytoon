@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter} from "react-router-dom";
 import MyTestNotFound from "../pages/templates/mytestnotfound/MyTestNotFound";
 import MyTestContextContainer from "../pages/templates/mytestcontext/MyTestContextContainer";
 import MyTestDocs from "../pages/templates/mytestdocs/MyTestDocs";
@@ -11,6 +11,7 @@ import MainContainer from "../pages/main/MainContainer";
 import Login from "../pages/login/Login";
 import Join from "../pages/join/Join";
 import DetailContainer from "../pages/detail/DetailContainer";
+import SearchContainer from "../pages/search/SearchContainer";
 
 const router = createBrowserRouter([
   {
@@ -22,16 +23,20 @@ const router = createBrowserRouter([
         element: <MainContainer />,
       },
       {
-        path: ":main",
+        path: "/:main",
         element: <MainContainer />,
       },
       {
-        path: ":main/:sub",
+        path: "/:main/:sub",
         element: <MainContainer />,
       },
       {
-        path: "content/:id",
+        path: "/content/:id",
         element: <DetailContainer />,
+      },
+      {
+        path: "/search/:type",
+        element: <SearchContainer />,
       },
       {
         path: "/login",
