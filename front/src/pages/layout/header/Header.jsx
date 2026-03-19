@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import S from "./style";
 import { useLocation, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,9 +38,9 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
         </S.Wrapper>
         <S.Wrapper>
           <S.SearchWrapper>
-            <form>
+            <form action={`/search/result`} method="get">
               <FontAwesomeIcon icon={faMagnifyingGlass} color="#a5a5a5" />
-              <input type="text" />
+              <input type="text" name='keyword'/>
               <button></button>
             </form>
           </S.SearchWrapper>
