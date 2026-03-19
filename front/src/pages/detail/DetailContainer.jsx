@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { contents } from "../../data/contentData";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import S from "./style";
@@ -27,26 +27,20 @@ const DetailContainer = () => {
 
   //홈, 정보 탭 쿼리 값
   const currentTap = searchParams.get("tap_type");
-  console.log(currentTap);
-
   //전체데이터
   const datas = contents;
   //에피소드 데이터
   const episodeData = EPISODE;
-
+  //연재요일 한글 상수
+  const dayData = DAY;
+  //카테고리 한글 상수
+  const categoryData = MAIN_SECTIONS;
   //현재 선택된 데이터
   const selectedData = datas.find((data) => data.id === Number(currentId));
-
   //현재 선택한 작품의 에피소드 데이터
   const selectedEpisode = episodeData.filter(
     (data) => data.content_id === Number(currentId),
   );
-
-  //연재요일 한글 상수
-  const dayData = DAY;
-
-  //카테고리 한글 상수
-  const categoryData = MAIN_SECTIONS;
 
   //선택된 데이터의 영문 메인카테고리와 한글 상수 카테고리에서 찾기
   const selectMainCategory = categoryData.find(
