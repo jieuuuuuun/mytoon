@@ -10,18 +10,40 @@ datasource db {
 // 1. 스키마 정의
 // 2. DTO
 
-// model Member {
-//     id Int @id @default(autoincrement())
-//     memberEmail String @unique
-//     memberName String
-//     memberAge Int?
-//     memberAddress String?
-//     memberProfile String?
-//     memberCreateAt DateTime @default(now())
-//     socials AuthAccount[]
+//tbl_user
+model User {
+    id Int @id @default(autoincrement())
+    userEmail String @unique
+    userPassword String
+    userName String
+    userAge Int?
+    userLike Int?
+    userCreateAt DateTime @default(now())
+    userUpdateAt DateTime @default(now()) @updatedAt
 
-//     @@map("tbl_member")
-// }
+    @@map("tbl_user")
+}
+
+//tbl_content 웹툰, 웹소설, 도서
+model Content {
+  id Int @id @default(autoincrement())
+}
+
+//tbl_main_category
+model MainCategory {
+  id Int @id @default(autoincrement())
+  name String
+  slug String
+}
+
+//tbl_sub_category
+model SubCategory {
+  id Int @id @default(autoincrement())
+  name String
+  slug String
+}
+
+
 
 // model AuthAccount {
 //     id Int @id @default(autoincrement())
