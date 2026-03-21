@@ -10,56 +10,251 @@ datasource db {
 // 1. 스키마 정의
 // 2. DTO
 
-//tbl_user
-model User {
-    id Int @id @default(autoincrement())
-    userEmail String @unique
-    userPassword String
-    userName String
-    userAge Int?
-    userLike Int?
-    userCreateAt DateTime @default(now())
-    userUpdateAt DateTime @default(now()) @updatedAt
+// 1. Member 관련 테이블
+model Member {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  age       Int?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
-    @@map("tbl_user")
+  roles      MemberRole[]
+  likes      Like[]
+  comments   Comment[]
+  reComments ReComment[]
+  views      View[]
+  socials    AuthAccount[]
+
+  @@map("tbl_member")
 }
 
-//tbl_content 웹툰, 웹소설, 도서
-model Content {
-  id Int @id @default(autoincrement())
+model Role {
+  id      Int          @id @default(autoincrement())
+  name    String
+  members MemberRole[]
+
+  @@map("tbl_role")
 }
 
-//tbl_main_category
+model MemberRole {
+  id       Int @id @default(autoincrement())
+  memberId Int @map("member_id")
+  roleId   Int @map("role_id")
+
+  member Member @relation(fields: [memberId], references: [id])
+  role   Role   @relation(fields: [roleId], references: [id])
+
+  @@map("tbl_member_role")
+}
+
+// 2. 카테고리 및 배너
 model MainCategory {
-  id Int @id @default(autoincrement())
-  name String
-  slug String
+  id            Int           @id @default(autoincrement())
+  name          String
+  slug          String
+  subCategories SubCategory[]
+  contents      Content[]
+
+  @@map("tbl_main_category")
 }
 
-//tbl_sub_category
 model SubCategory {
-  id Int @id @default(autoincrement())
-  name String
-  slug String
+  id             Int    @id @default(autoincrement())
+  name           String
+  slug           String
+  mainCategoryId Int    @map("main_category_id")
+
+  mainCategory MainCategory @relation(fields: [mainCategoryId], references: [id])
+  banners      Banner[]
+  contents     Content[]
+
+  @@map("tbl_sub_category")
 }
 
+model Banner {
+  id            Int      @id @default(autoincrement())
+  title         String
+  imageUrl      String   @map("image_url")
+  isActive      Int      @default(1) @map("is_active") // tinyint 반영
+  sortOrder     Int      @default(0) @map("sort_order")
+  startAt       DateTime @map("start_at")
+  endAt         DateTime @map("end_at")
+  subCategoryId Int      @map("sub_category_id")
 
+  subCategory SubCategory @relation(fields: [subCategoryId], references: [id])
 
-// model AuthAccount {
-//     id Int @id @default(autoincrement())
-//     memberProvider AuthProvider
-//     memberProviderId String?
-//     memberPassword String?
-//     memberId Int
-//     member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  @@map("tbl_banner")
+}
 
-//     @@unique([memberProviderId, memberId])
-//     @@map("tbl_auth_account")
-// }
+// 3. 콘텐츠(웹툰/소설) 및 작가
+model Content {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @db.Text
+  thumbnail   String
+  keyword     String?
+  viewsCount  Int      @default(0) @map("views")
+  rating      Int      @default(0)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
 
-// enum AuthProvider {
-//     LOCAL
-//     GOOGLE
-//     KAKAO
-//     NAVER
-// }
+  mainCategoryId Int @map("main_category_id")
+  subCategoryId  Int @map("sub_category_id")
+
+  mainCategory   MainCategory    @relation(fields: [mainCategoryId], references: [id])
+  subCategory    SubCategory     @relation(fields: [subCategoryId], references: [id])
+  episodes       Episode[]
+  likes          Like[]
+  contentAuthors ContentAuthor[]
+  contentDays    ContentDay[]
+  notices        Notice[]
+
+  @@map("tbl_content")
+}
+
+model Author {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  contents ContentAuthor[]
+
+  @@map("tbl_author")
+}
+
+model ContentAuthor {
+  id        BigInt @id @default(autoincrement())
+  contentId Int    @map("content_id")
+  authorId  Int    @map("author_id")
+
+  content Content @relation(fields: [contentId], references: [id])
+  author  Author  @relation(fields: [authorId], references: [id])
+
+  @@map("tbl_content_author")
+}
+
+// 4. 에피소드 및 커뮤니티
+model Episode {
+  id        Int      @id @default(autoincrement())
+  title     String
+  thumbnail String
+  isPublic  Int      @default(1) @map("is_public")
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  contentId Int      @map("content_id")
+
+  content  Content   @relation(fields: [contentId], references: [id])
+  comments Comment[]
+  views    View[]
+
+  @@map("tbl_episode")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  message   String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  episodeId Int      @map("episode_id")
+  memberId  Int      @map("member_id")
+
+  episode    Episode     @relation(fields: [episodeId], references: [id])
+  member     Member      @relation(fields: [memberId], references: [id])
+  reComments ReComment[]
+
+  @@map("tbl_comment")
+}
+
+model ReComment {
+  id        Int      @id @default(autoincrement())
+  message   String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  commentId Int      @map("comment_id")
+  memberId  Int      @map("member_id")
+
+  comment Comment @relation(fields: [commentId], references: [id])
+  member  Member  @relation(fields: [memberId], references: [id])
+
+  @@map("tbl_re_comment")
+}
+
+// 5. 기타 (조회, 좋아요, 요일, 공지)
+model View {
+  id        Int      @id @default(autoincrement())
+  episodeId Int      @map("episode_id")
+  memberId  Int      @map("member_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  episode Episode @relation(fields: [episodeId], references: [id])
+  member  Member  @relation(fields: [memberId], references: [id])
+
+  @@map("tbl_view")
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  memberId  Int      @map("member_id")
+  contentId Int      @map("content_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  member  Member  @relation(fields: [memberId], references: [id])
+  content Content @relation(fields: [contentId], references: [id])
+
+  @@map("tbl_like")
+}
+
+model Day {
+  id          Int          @id @default(autoincrement())
+  dayOfWeek   String       @map("day_of_week")
+  contentDays ContentDay[]
+
+  @@map("tbl_day")
+}
+
+model ContentDay {
+  id        Int @id @default(autoincrement())
+  contentId Int @map("content_id")
+  dayId     Int @map("day_id")
+
+  content Content @relation(fields: [contentId], references: [id])
+  day     Day     @relation(fields: [dayId], references: [id])
+
+  @@map("tbl_content_day")
+}
+
+model Notice {
+  id        Int      @id @default(autoincrement())
+  title     String
+  body      String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  contentId Int      @map("content_id")
+
+  content Content @relation(fields: [contentId], references: [id])
+
+  @@map("tbl_notice")
+}
+
+model AuthAccount {
+  id       Int          @id @default(autoincrement()) @map("id")
+  provider AuthProvider @map("provider")
+  providerId String? @map("provider_id")
+  password String? @map("password")
+  memberId Int    @map("member_id")
+  member   Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  // 한 유저가 동일한 프로바이더 ID를 중복해서 가질 수 없도록 설정
+  @@unique([providerId, memberId])
+  @@map("tbl_auth_account")
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
+  KAKAO
+  NAVER
+}

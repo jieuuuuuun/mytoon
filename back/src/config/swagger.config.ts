@@ -18,5 +18,4 @@ export function setupSwagger(app: INestApplication): void {
       persistAuthorization: true, // JWT 토큰 유지
     },
   });
-
 }

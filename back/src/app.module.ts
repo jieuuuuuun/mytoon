@@ -4,11 +4,7 @@ import { CoreModule } from './module/core/core.module';
 import { AuthModule } from './module/auth/auth.module';
 
 @Module({
-  imports: [
-    CoreModule,
-    MemberModule,
-    AuthModule,
-  ],
+  imports: [CoreModule, MemberModule, AuthModule],
   controllers: [],
   providers: [],
 })

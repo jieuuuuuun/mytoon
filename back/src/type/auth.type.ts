@@ -1,12 +1,12 @@
-import { Request } from "express";
+import { Request } from 'express';
 
 export interface JwtPayload {
-    id: number;
-    memberEmail?: string;
-    iat?: number; // 만들어진 시간
-    exp?: number; // 만료 시간
+  id: number;
+  email?: string;
+  iat?: number; // 만들어진 시간
+  exp?: number; // 만료 시간
 }
 
 export interface AuthRequest extends Request {
-    user: JwtPayload
+  user: JwtPayload;
 }

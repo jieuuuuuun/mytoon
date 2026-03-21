@@ -5,11 +5,9 @@ import { MemberService } from 'src/service/member/member.service';
 import { AuthModule } from '../auth/auth.module';
 
 @Module({
-    imports: [
-        forwardRef(() => AuthModule),
-    ],
-    controllers: [MemberController],
-    providers: [MemberRepository, MemberService],
-    exports: [MemberRepository, MemberService],
+  imports: [forwardRef(() => AuthModule)],
+  controllers: [MemberController],
+  providers: [MemberRepository, MemberService],
+  exports: [MemberRepository, MemberService],
 })
-export class MemberModule {;}
+export class MemberModule {}
