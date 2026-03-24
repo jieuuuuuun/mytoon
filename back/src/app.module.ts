@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { MemberModule } from './module/member/member.module';
-import { CoreModule } from './module/core/core.module';
-import { AuthModule } from './module/auth/auth.module';
+import { CoreModule } from './module/core/core.module.js';
+import { MemberModule } from './module/member/member.module.js';
+import { AuthModule } from './module/auth/auth.module.js';
+import { CategoryModule } from './module/category/category.module.js';
 
 @Module({
-  imports: [CoreModule, MemberModule, AuthModule],
+  imports: [CoreModule, MemberModule, AuthModule, CategoryModule],
   controllers: [],
   providers: [],
 })
