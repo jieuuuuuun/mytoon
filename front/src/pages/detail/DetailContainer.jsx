@@ -79,8 +79,8 @@ const DetailContainer = () => {
                   />
                 </S.EpisodeImgWrapper>
                 <div>
-                  <div>{`${title}`}</div>
-                  <div>{date}</div>
+                  <S.EpisodeTitle>{`${title}`}</S.EpisodeTitle>
+                  <S.EpisodeDate>{date}</S.EpisodeDate>
                   <div>{is_public}</div>
                 </div>
               </S.EpisodeWrapper>
@@ -148,8 +148,6 @@ const DetailContainer = () => {
       );
     },
   );
-
-  console.log(episodeList);
   
   return (
     <div>
@@ -171,9 +169,9 @@ const DetailContainer = () => {
             <div>
               {currentTap !== "about" ? (
                 <ul>{episodeList.length === 0 ? (
-                  <li>
-                    <div>현재 등록된 에피소드가 없습니다.</div>
-                  </li>
+                  <div>
+                    <S.EpisodeText>현재 등록된 에피소드가 없습니다.</S.EpisodeText>
+                  </div>
                 ) : (
                   episodeList
                 )}</ul>

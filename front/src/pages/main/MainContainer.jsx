@@ -12,7 +12,6 @@ const MainContainer = () => {
       main: "webtoon",
       sub: "romance",
       title: "jbook 웹툰 신간 출시",
-      slug: "/webtoon/romance",
       img: "main_banner_09.jpg",
     },
     {
@@ -20,7 +19,6 @@ const MainContainer = () => {
       main: "webnovel",
       sub: "romance",
       title: "jbook 웹소설 신간 출시",
-      slug: "/webnovel/romance",
       img: "main_banner_03.jpg",
     },
     {
@@ -28,7 +26,6 @@ const MainContainer = () => {
       main: "ebook",
       sub: "business-economy",
       title: "jbook 도서 신간 출시",
-      slug: "/ebook/business-economy",
       img: "main_banner_04.png",
     },
     {
@@ -36,7 +33,6 @@ const MainContainer = () => {
       main: "webtoon",
       sub: "action",
       title: "jbook 웹툰 신간 출시2",
-      slug: "/webtoon/action",
       img: "main_banner_08.jpg",
     },
   ];

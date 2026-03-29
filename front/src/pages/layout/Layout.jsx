@@ -4,6 +4,7 @@ import S from "./style";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import SubCategory from "./subCategory/SubCategory";
+import { get } from "react-hook-form";
 
 const Layout = () => {
   const mainCategories = [
@@ -64,7 +65,21 @@ const Layout = () => {
     },
   ];
 
-  const { main : currentMain} = useParams();
+  // const [mainCategory setMainCategory] = useState([]);
+
+  
+  // useEffect(() => {
+  //   const getMainCategory = async () => {
+  //   const response = await fetch("http://localhost:10000/");
+  //   const datas = await response.json();
+  //   setMainCategory(datas)
+  // };
+  // getMainCategory();
+  // },[])
+
+  // console.log(mainCategory);
+  
+  const { main: currentMain } = useParams();
   const currentPage = useLocation().pathname;
 
   const [activeCategory, setActiveCategory] = useState("");
@@ -82,7 +97,13 @@ const Layout = () => {
   return (
     <S.PageWrapper>
       <S.HaderWrapper>
-        <S.HeaderInner $justifyContent={(currentPage === "/login") || (currentPage === "/join") ? "center" : "space-between"}>
+        <S.HeaderInner
+          $justifyContent={
+            currentPage === "/login" || currentPage === "/join"
+              ? "center"
+              : "space-between"
+          }
+        >
           <Header
             mainCategories={mainCategories}
             handleCategoryOnClick={handleCategoryOnClick}
@@ -90,10 +111,12 @@ const Layout = () => {
         </S.HeaderInner>
       </S.HaderWrapper>
       <S.MainWrapper>
-        {currentMain && (<SubCategory
-          mainCategories={mainCategories}
-          handleSubCategoryOnClick={handleSubCategoryOnClick}
-        />)}
+        {currentMain && (
+          <SubCategory
+            mainCategories={mainCategories}
+            handleSubCategoryOnClick={handleSubCategoryOnClick}
+          />
+        )}
         <Outlet />
       </S.MainWrapper>
       <Footer />

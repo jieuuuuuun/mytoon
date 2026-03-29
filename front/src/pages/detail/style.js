@@ -1,11 +1,5 @@
 import styled from "styled-components";
-import {
-  flexCenter,
-  flexCenterColumn,
-  flexColumn,
-  flexLeft,
-  flexRow,
-} from "../../styles/common";
+import { flexColumn, flexLeft, flexRow } from "../../styles/common";
 import { Link } from "react-router-dom";
 
 const S = {};
@@ -90,9 +84,8 @@ S.TapBtn = styled.div`
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.PALETTE.gray["400"]};
   font-size: 12px;
-  background-color: ${({$isActive, theme}) => (
-    $isActive ? theme.PALETTE.primary["main"] : "inherit"
-  )}
+  background-color: ${({ $isActive, theme }) =>
+    $isActive ? theme.PALETTE.primary["main"] : "inherit"};
 `;
 
 //author
@@ -168,24 +161,41 @@ S.KeywordLink = styled(Link)`
 //episode
 S.EpisodeContainer = styled.li`
   margin: 0 11px 8px 11px;
-`
+`;
 
 S.EpisodeWrapper = styled.div`
-  display:flex;
-  align-items:center;
-`
+  display: flex;
+  align-items: center;
+`;
 
 S.EpisodeImgWrapper = styled.div`
   width: 56px;
   border-radius: 6px;
   overflow: hidden;
-  display:flex;
+  display: flex;
+  margin: 0 10px 0 0;
+
 `;
 
 S.EpisodeImg = styled.img`
   width: 100%;
   object-fit: cover;
-  
 `;
+
+S.EpisodeText = styled.div`
+  font-size:12px;
+  padding:0 18px;
+`
+
+S.EpisodeTitle = styled.div`
+  font-size:14px;
+  font-weight: ${({theme}) => theme.FONT_WEIGHT.regular};
+  line-height:20px;
+`
+
+S.EpisodeDate = styled.div`
+  font-size:11px;
+  font-weight: ${({theme}) => theme.FONT_WEIGHT.regular};
+`
 
 export default S;

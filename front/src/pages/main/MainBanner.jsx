@@ -17,7 +17,7 @@ const MainBanner = ({ mainBanner }) => {
   const categoryfilter = !main
     ? mainBanner
     : mainBanner.filter((c) => c.main === main);
-  const mainBannerList = categoryfilter.map(({ title, img, slug, main, sub }, i) => {
+  const mainBannerList = categoryfilter.map(({ title, img, main, sub }, i) => {
     // console.log("mainBannerList",slug);
     
     return (
