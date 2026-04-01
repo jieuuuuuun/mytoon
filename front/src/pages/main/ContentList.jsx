@@ -6,7 +6,6 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const ContentList = ({ contentCardFilter, title, slug }) => {
   const { main: currentMain, type: searchTyp } = useParams();
-  console.log("ContentList", contentCardFilter);
   
   const contentTitle = currentMain || searchTyp ? (
     <></>

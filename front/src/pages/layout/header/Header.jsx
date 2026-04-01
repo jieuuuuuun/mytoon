@@ -9,14 +9,14 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
   const { main: mainCategory } = useParams();
   const currentPage = useLocation().pathname;
   
-  const mainCategoryList = mainCategories.map(({ name, slug, sub }, i) => {
+  const mainCategoryList = mainCategories.map(({ name, slug, subCategories }, i) => {
     const isActiveCategory =
       (name === "추천" && !mainCategory) || mainCategory === slug;
     return (
       <li key={i}>
         <S.Category
-          to={slug === "" ? "/" : `/${slug}/${sub?.[0]?.slug}`}
-          onClick={() => handleCategoryOnClick(name, sub)}
+          to={slug === "" ? "/" : `/${slug}/${subCategories?.[0]?.slug}`}
+          onClick={() => handleCategoryOnClick(name, subCategories)}
           $isActive={isActiveCategory}
         >
           {name}

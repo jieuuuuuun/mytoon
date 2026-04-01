@@ -6,7 +6,7 @@ const SubCategory = ({ mainCategories, handleSubCategoryOnClick}) => {
   const { main, sub: currentSubSlug} = useParams();
   const currentCategory = mainCategories.find((c) => c.slug === main);
   
-  const subCategoryList = currentCategory.sub.map(({name, slug}, i) =>{
+  const subCategoryList = currentCategory.subCategories.map(({name, slug}, i) =>{
   const isActived = currentSubSlug === slug;
 
     return <li key={i}>
