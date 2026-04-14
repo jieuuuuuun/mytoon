@@ -31,7 +31,7 @@ model Member {
 
 model Role {
   id      Int          @id @default(autoincrement())
-  name    String
+  name    String       @unique
   members MemberRole[]
 
   @@map("tbl_role")
@@ -240,12 +240,12 @@ model Notice {
 }
 
 model AuthAccount {
-  id       Int          @id @default(autoincrement()) @map("id")
-  provider AuthProvider @map("provider")
-  providerId String? @map("provider_id")
-  password String? @map("password")
-  memberId Int    @map("member_id")
-  member   Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  id         Int          @id @default(autoincrement()) @map("id")
+  provider   AuthProvider @map("provider")
+  providerId String?      @map("provider_id")
+  password   String?      @map("password")
+  memberId   Int          @map("member_id")
+  member     Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
 
   // 한 유저가 동일한 프로바이더 ID를 중복해서 가질 수 없도록 설정
   @@unique([providerId, memberId])

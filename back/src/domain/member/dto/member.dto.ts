@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+import { MemberRoleDTO } from 'src/domain/role/dto/memberRole.dto';
 
 export class MemberRegisterDTO {
   // model Member
@@ -38,6 +39,12 @@ export class MemberRegisterDTO {
   @IsString()
   @IsOptional()
   providerId?: string;
+
+  // @ApiProperty({
+  //   example: [{ id: 1, memberId: 1, roleId: 2 }],
+  //   description: 'memberRole',
+  // })
+  // roles!: MemberRoleDTO[];
 }
 
 export class MemberUpdateDTO {

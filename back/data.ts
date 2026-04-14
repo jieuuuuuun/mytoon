@@ -35,4 +35,8 @@ const prisma = new PrismaClient();
       },
     ],
   });
+
+  /*await prisma.role.createMany({
+    data: [{ name: 'user' }, { name: 'admin' }],
+  });*/
 })();

@@ -1,30 +1,31 @@
-/*import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import { MainCategoryCreateDTO } from 'src/domain/category/dto/mainCategory.dto';
 
 const prisma = new PrismaClient();
 
 (async () => {
   // prisma.모델명.메서드명
   // ex) prisma.mainCategory.create()
-  const mainCategory: MainCategoryCreateDTO = {
-    name: '추천',
-    slug: '',
-  };
-  const mainCategory1: MainCategoryCreateDTO = {
-    name: '웹툰',
-    slug: 'webtoon',
-  };
-  const mainCategory2: MainCategoryCreateDTO = {
-    name: '웹소설',
-    slug: 'webnovel',
-  };
-  const mainCategory3: MainCategoryCreateDTO = {
-    name: '도서',
-    slug: 'ebook',
-  };
-  const mainCategories = [mainCategory1, mainCategory2, mainCategory3];
-  await prisma.mainCategory.createMany({
-    data: mainCategories,
-  });
+  // const mainCategory: MainCategoryCreateDTO = {
+  //   name: '추천',
+  //   slug: '',
+  // };
+  // const mainCategory1: MainCategoryCreateDTO = {
+  //   name: '웹툰',
+  //   slug: 'webtoon',
+  // };
+  // const mainCategory2: MainCategoryCreateDTO = {
+  //   name: '웹소설',
+  //   slug: 'webnovel',
+  // };
+  // const mainCategory3: MainCategoryCreateDTO = {
+  //   name: '도서',
+  //   slug: 'ebook',
+  // };
+  // const mainCategories = [mainCategory1, mainCategory2, mainCategory3];
+  // await prisma.mainCategory.createMany({
+  //   data: mainCategories,
+  // });
   const mainCategoryList = await prisma.mainCategory.findMany();
   const webtoon = mainCategoryList.find((m) => m.slug === 'webtoon');
   const webnovel = mainCategoryList.find((m) => m.slug === 'webnovel');
@@ -69,4 +70,3 @@ const prisma = new PrismaClient();
     ],
   });
 })();
-*/

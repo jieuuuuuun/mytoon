@@ -11,6 +11,7 @@ import {
   OAuthLoginDTO,
 } from 'src/domain/member/dto/member.dto';
 import { AuthProvider } from '@prisma/client';
+import { MemberRoleDTO } from 'src/domain/role/dto/memberRole.dto';
 
 // 회원 검증과 관련된 서비스
 @Injectable()

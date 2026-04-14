@@ -33,9 +33,21 @@ export class MemberRepository {
         socials: {
           create: memberSocialCreate,
         },
+        roles: {
+          create: {
+            role: {
+              connect: { name: 'user' },
+            },
+          },
+        },
       },
       include: {
         socials: true,
+        roles: {
+          include: {
+            role: true,
+          },
+        },
       },
     });
   }
