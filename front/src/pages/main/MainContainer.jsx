@@ -6,7 +6,6 @@ import {contents} from "../../data/contentData"
 
 const MainContainer = () => {
   const mainBanner = [
-    //웹툰
     {
       id: 1,
       main: "webtoon",
