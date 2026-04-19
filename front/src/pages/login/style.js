@@ -3,6 +3,11 @@ import { flexCenter, flexCenterColumn, flexColumn } from "../../styles/common";
 
 const S = {};
 
+S.ErrorMessage = styled.p`
+  font-size:12px;
+  color:red;
+`
+
 S.LoginWrapper = styled.div`
   ${flexColumn};
   width: 374px;

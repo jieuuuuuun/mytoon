@@ -5,9 +5,14 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import SubCategory from "./subCategory/SubCategory";
 import { get } from "react-hook-form";
+import useAuthStore from "../../store/authStore";
 
 const Layout = () => {
   const [mainCategories, setMainCategories] = useState([]);
+  const { member, isAuthenticated } = useAuthStore()
+  const loginMember = member;
+  console.log("현재 로그인한 회원", loginMember);
+  
 
   useEffect(() => {
     const getMainCategory = async () => {
