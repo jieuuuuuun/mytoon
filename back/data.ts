@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 (async () => {
-  await prisma.banner.createMany({
+  /*await prisma.banner.createMany({
     data: [
       {
         title: 'jbook 웹툰 신간 출시',
@@ -34,9 +34,21 @@ const prisma = new PrismaClient();
         subCategoryId: 3,
       },
     ],
-  });
+  });*/
 
   /*await prisma.role.createMany({
     data: [{ name: 'user' }, { name: 'admin' }],
   });*/
+  
+  // await prisma.day.createMany({
+  //   data: [
+  //     { dayOfWeek: '월', slug: 'mon' },
+  //     { dayOfWeek: '화', slug: 'tue' },
+  //     { dayOfWeek: '수', slug: 'wed' },
+  //     { dayOfWeek: '목', slug: 'thu' },
+  //     { dayOfWeek: '금', slug: 'fri' },
+  //     { dayOfWeek: '토', slug: 'sat' },
+  //     { dayOfWeek: '일', slug: 'sun' },
+  //   ],
+  // });
 })();

@@ -9,10 +9,10 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBody, ApiOperation } from '@nestjs/swagger';
 import { AuthProvider } from '@prisma/client';
 import { ApiResponse } from 'src/common/dto/api-response.dto';
-import type {
+import {
   MemberRegisterDTO,
   MemberUpdateDTO,
 } from 'src/domain/member/dto/member.dto';
@@ -24,6 +24,7 @@ export class MemberController {
   constructor(private readonly memberService: MemberService) {}
 
   @ApiOperation({ summary: '회원가입 서비스' })
+  @ApiBody({ type: MemberRegisterDTO })
   @Post('join')
   @HttpCode(201)
   async join(@Body() member: MemberRegisterDTO): Promise<ApiResponse> {

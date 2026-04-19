@@ -210,6 +210,7 @@ model Like {
 model Day {
   id          Int          @id @default(autoincrement())
   dayOfWeek   String       @map("day_of_week")
+  slug        String
   contentDays ContentDay[]
 
   @@map("tbl_day")
