@@ -13,7 +13,6 @@ const Layout = () => {
     const getMainCategory = async () => {
     const response = await fetch("http://localhost:10000/category");
     const datas = await response.json();
-    console.log(datas);
     setMainCategories(datas.data)
   };
   getMainCategory();

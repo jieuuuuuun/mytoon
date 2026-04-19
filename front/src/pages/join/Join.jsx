@@ -14,27 +14,29 @@ const Join = () => {
   const join = handleSubmit(async (data) => {
     const { memberEmail, memberPassword, memberName } = data;
     const member = {
-      memberEmail: memberEmail,
-      memberPassword: memberPassword,
-      memberName: memberName,
+      email: memberEmail,
+      password: memberPassword,
+      name: memberName,
     };
 
-    const response = await fetch("http://localhost:10000/members", {
+    const response = await fetch("http://localhost:10000/members/join", {
       method: "POST",
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(member),
     });
 
-    if (!response.ok) throw new Error("Data Fetching Error")
-    const datas = await response.json()
+    if (!response.ok) {
+      throw new Error("Data Fetching Error");
+    } else {
+      alert("회원가입 성공!");
+      window.location.href = "/login";
+    }
   });
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
-
-  console.log(errors);
 
   return (
     <>
@@ -87,11 +89,6 @@ const Join = () => {
                   validate: {
                     matchPassword: (memberPasswordConfirm) => {
                       const { memberPassword } = getValues();
-                      console.log(
-                        memberPasswordConfirm,
-                        memberPassword,
-                        memberPassword === memberPasswordConfirm,
-                      );
                       return memberPassword === memberPasswordConfirm;
                     },
                   },
