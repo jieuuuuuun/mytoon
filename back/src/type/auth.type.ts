@@ -3,6 +3,7 @@ import { Request } from 'express';
 export interface JwtPayload {
   id: number;
   email?: string;
+  name?: string;
   iat?: number; // 만들어진 시간
   exp?: number; // 만료 시간
 }

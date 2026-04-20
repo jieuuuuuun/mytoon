@@ -52,7 +52,9 @@ export class AuthController {
       sameSite: 'lax',
     });
 
-    return new ApiResponse('로그인이 성공하였습니다');
+    return new ApiResponse('로그인이 성공하였습니다', {
+      member: req.user,
+    });
   }
 
   @ApiOperation({ summary: '로그아웃 서비스' })

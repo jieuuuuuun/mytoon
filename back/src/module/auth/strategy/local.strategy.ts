@@ -42,6 +42,7 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     const jwtPayload: JwtPayload = {
       id: foundMember.id,
       email: loginMemberEmail,
+      name: foundMember.name,
     };
 
     return jwtPayload;

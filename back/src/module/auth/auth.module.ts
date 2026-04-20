@@ -10,18 +10,18 @@ import { NaverStrategy } from './strategy/naver.strategy';
 
 // 순환참조 해결
 @Module({
-    imports: [
-        forwardRef(() => MemberModule),
-        PassportModule.register({session: false})
-    ],
-    providers: [
-        AuthService,
-        LocalStrategy,
-        GoogleStrategy,
-        KakaoStrategy,
-        NaverStrategy
-    ],
-    controllers: [AuthController],
-    exports: [AuthService]
+  imports: [
+    forwardRef(() => MemberModule),
+    PassportModule.register({ session: false }),
+  ],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    GoogleStrategy,
+    KakaoStrategy,
+    NaverStrategy,
+  ],
+  controllers: [AuthController],
+  exports: [AuthService],
 })
-export class AuthModule {;}
+export class AuthModule {}

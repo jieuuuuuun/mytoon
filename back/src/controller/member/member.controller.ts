@@ -34,7 +34,7 @@ export class MemberController {
       provider: AuthProvider.LOCAL,
     });
     // return값이 nest에서는 자동 응답(JSON)
-    return new ApiResponse('회원가입이 완료되었습니다.');
+    return new ApiResponse('회원가입이 완료되었습니다.', member);
   }
 
   // 회원 전체 목록 조회(원래 서비스X)

@@ -4,7 +4,7 @@ import { IsString } from 'class-validator';
 export class TokenDTO {
   @ApiProperty({ example: 'testtokentesttokentesttoken' })
   @IsString()
-  accessToken: string;
+  accessToken!: string;
 
   @ApiProperty({ example: 'testtokentesttokentesttoken' })
   @IsString()
