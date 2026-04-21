@@ -1,4 +1,4 @@
-import { createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import MyTestNotFound from "../pages/templates/mytestnotfound/MyTestNotFound";
 import MyTestContextContainer from "../pages/templates/mytestcontext/MyTestContextContainer";
 import MyTestDocs from "../pages/templates/mytestdocs/MyTestDocs";
@@ -13,6 +13,8 @@ import Join from "../pages/join/Join";
 import DetailContainer from "../pages/detail/DetailContainer";
 import SearchContainer from "../pages/search/SearchContainer";
 import MyPage from "../pages/mypage/MyPage";
+import AuthLayout from "../pages/layout/AuthLayout";
+import PublicLayout from "../pages/layout/PublicLayout";
 
 const router = createBrowserRouter([
   {
@@ -40,29 +42,29 @@ const router = createBrowserRouter([
         element: <SearchContainer />,
       },
       {
-        path: "/login",
-        element: <Login />,
+        element: <AuthLayout />, // 로그인이 필요한 페이지
+        children: [
+          {
+            path: "/my-page",
+            element: <MyPage />,
+          },
+        ],
       },
       {
-        path: "/join",
-        element: <Join />,
-      },
-      {
-        path: "/mypage",
-        element: <MyPage />,
+        element: <PublicLayout />, // 로그인시 접근 불가 페이지
+        children: [
+          {
+            path: "/login",
+            element: <Login />,
+          },
+          {
+            path: "/join",
+            element: <Join />,
+          },
+        ],
       },
     ],
   },
-  // {
-  //       element: <AuthLayout />, // 로그인이 필요한 페이지
-  //       children: [
-  //           {
-  //               path: "/my-page",
-  //               element: <MyPage />
-  //           }
-  //       ]
-  //   },
-
   {
     path: "/docs",
     element: <MyTestDocs />,

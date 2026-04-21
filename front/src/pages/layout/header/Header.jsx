@@ -48,7 +48,7 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
   const profile = isProfile && (
     <S.Profile>
       <S.ProfileWrapper>
-        <S.MyPageBtn to={'/mypage'}>
+        <S.MyPageBtn to={'/my-page'}>
           {member.name}
         </S.MyPageBtn>
       </S.ProfileWrapper>
@@ -93,7 +93,7 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
               <button></button>
             </form>
           </S.SearchWrapper>
-          {member ? (
+          { member ? (
             <>
               <button onClick={handleUserIconOnClick}>
                 <FontAwesomeIcon icon={faUser} size="xl" />
