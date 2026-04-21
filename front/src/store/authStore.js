@@ -10,7 +10,11 @@ const useAuthStore = create(
       },
       (set) => ({
         setIsAuthenticated: (status) => set({ isAuthenticated: status }),
-        setMember: (member) => set({ member }),
+        setMember: (member) =>
+          set({
+            member: member,
+            isAuthenticated: true,
+          }),
       }),
     ),
     {

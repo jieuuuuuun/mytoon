@@ -12,6 +12,7 @@ import Login from "../pages/login/Login";
 import Join from "../pages/join/Join";
 import DetailContainer from "../pages/detail/DetailContainer";
 import SearchContainer from "../pages/search/SearchContainer";
+import MyPage from "../pages/mypage/MyPage";
 
 const router = createBrowserRouter([
   {
@@ -46,8 +47,21 @@ const router = createBrowserRouter([
         path: "/join",
         element: <Join />,
       },
+      {
+        path: "/mypage",
+        element: <MyPage />,
+      },
     ],
   },
+  // {
+  //       element: <AuthLayout />, // 로그인이 필요한 페이지
+  //       children: [
+  //           {
+  //               path: "/my-page",
+  //               element: <MyPage />
+  //           }
+  //       ]
+  //   },
 
   {
     path: "/docs",

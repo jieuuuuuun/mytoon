@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { flexCenter } from "../../../styles/common";
 
@@ -42,5 +42,35 @@ S.LoginBtn = styled(Link)`
   text-decoration: none;
   font-size: 14px;
 `;
+
+//내 정보 팝업
+S.Profile = styled.div`
+  position: absolute;
+  display: flex;
+  right: 0;
+  top: 5rem;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  box-shadow: antiquewhite;
+  padding-top: 1.4375rem;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  background-color: white;
+  border: 1px solid #0000000d;
+  align-items: center;
+  width: 17.25rem;
+  height: auto;
+  z-index: 100;
+`;
+
+S.ProfileWrapper = styled.div`
+  border-bottom:1px solid #333;
+`
+
+S.MyPageBtn = styled(NavLink)`
+  border: 1px solid #0000000d;
+  font-size:12px;
+  color: #333;
+`
 
 export default S;

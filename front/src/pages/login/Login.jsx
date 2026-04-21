@@ -13,7 +13,7 @@ const Login = () => {
     register,
     handleSubmit,
     getValues,
-    formState: { errors, isSubmitted, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm({ mode: "onChange" });
 
   //[] 바깥 ^는 문자열 처음을 의미
@@ -41,9 +41,7 @@ const Login = () => {
     mutationFn: login,
     onSuccess: (res) => {
       // 로그인 성공
-      console.log("onSuccess", res);
-      setIsAuthenticated(true);
-      setMember(res.member);
+      setMember(res.data.member);
       navigate("/", { replace: true });
     },
     onError: (error) => {

@@ -1,6 +1,5 @@
 import React from "react";
 import S from "./style";
-import { data, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Join = () => {
@@ -8,7 +7,7 @@ const Join = () => {
     register,
     handleSubmit,
     getValues,
-    formState: { errors, isSubmitted, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm({ mode: "onChange" });
 
   const join = handleSubmit(async (data) => {
