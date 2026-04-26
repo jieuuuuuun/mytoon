@@ -64,13 +64,16 @@ S.Profile = styled.div`
 `;
 
 S.ProfileWrapper = styled.div`
-  border-bottom:1px solid #333;
-`
+  display: block;
+  border-bottom: 1px solid #333;
+  width: 100%;
+  text-align: center;
+`;
 
 S.MyPageBtn = styled(NavLink)`
   border: 1px solid #0000000d;
-  font-size:12px;
+  font-size: 12px;
   color: #333;
-`
+`;
 
 export default S;
