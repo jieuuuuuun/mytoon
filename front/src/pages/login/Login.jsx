@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import S from "./style";
 import { useForm } from "react-hook-form";
@@ -8,6 +8,7 @@ import useAuthStore from "../../store/authStore";
 const Login = () => {
   const { setIsAuthenticated, setMember } = useAuthStore();
   const navigate = useNavigate();
+  const [isContnction, setIsContnction] = useState(false);
 
   const {
     register,
@@ -20,7 +21,7 @@ const Login = () => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#])[\da-zA-Z!@#]{8,}$/;
 
-  const login = (async (member) => {
+  const login = async (member) => {
     const response = await fetch("http://localhost:10000/auth/login", {
       method: "POST",
       headers: {
@@ -35,7 +36,7 @@ const Login = () => {
       throw new Error("로그인 실패");
     }
     return response.json();
-  });
+  };
 
   const loginMutation = useMutation({
     mutationFn: login,
@@ -46,6 +47,7 @@ const Login = () => {
     },
     onError: (error) => {
       console.log(error);
+      setIsContnction(true);
       setIsAuthenticated(false);
     },
   });
@@ -97,6 +99,12 @@ const Login = () => {
                 </S.ErrorMessage>
               )}
             </div>
+            {isContnction && (
+              <S.ErrorMessage>
+                이메일 혹은 비밀번호가 일치하지 않습니다. <br />
+                입력한 내용을 다시 확인해 주세요.
+              </S.ErrorMessage>
+            )}
             <button disabled={isSubmitting}>로그인</button>
           </S.LoginInner>
         </form>
