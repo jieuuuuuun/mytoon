@@ -52,20 +52,18 @@ S.Profile = styled.div`
   flex-direction: column;
   border-radius: 0.5rem;
   box-shadow: antiquewhite;
-  padding-top: 1.4375rem;
-  padding-left: 0.9375rem;
-  padding-right: 0.9375rem;
+  padding: 15px;
   background-color: white;
   border: 1px solid #0000000d;
   align-items: center;
-  width: 17.25rem;
+  width: 196px;
   height: auto;
   z-index: 100;
 `;
 
 S.ProfileWrapper = styled.div`
   display: block;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #0000000d;
   width: 100%;
   text-align: center;
 `;
@@ -74,6 +72,18 @@ S.MyPageBtn = styled(NavLink)`
   border: 1px solid #0000000d;
   font-size: 12px;
   color: #333;
+  padding: 9px 16px;
+  margin: auto auto 15px auto;
+  display: block;
+  text-align: center;
+  width: 80px;
+  border-radius:18px;
 `;
+
+S.LogoutBtn = styled.button`
+  padding: 19px 0 0 0;
+  font-size: 12px;
+  color: #333;
+`
 
 export default S;

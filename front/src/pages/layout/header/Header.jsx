@@ -52,7 +52,7 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
           {member.name}
         </S.MyPageBtn>
       </S.ProfileWrapper>
-      <button onClick={handleLogoutOnClick}>로그아웃</button>
+      <S.LogoutBtn onClick={handleLogoutOnClick}>로그아웃</S.LogoutBtn>
     </S.Profile>
   );
 
