@@ -19,6 +19,7 @@ export class JwtTokenService {
         id: payload.id,
         email: payload.email,
         name: payload.name,
+        role: payload.role,
       },
       {
         issuer: 'sehwan',
@@ -36,6 +37,7 @@ export class JwtTokenService {
         id: payload.id,
         email: payload.email,
         name: payload.name,
+        role: payload.role,
       },
       {
         issuer: 'sehwan',

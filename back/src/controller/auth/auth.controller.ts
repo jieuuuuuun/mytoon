@@ -33,11 +33,10 @@ export class AuthController {
     @Req() req: AuthRequest,
     @Res({ passthrough: true }) res: Response,
   ) {
-    console.log('controller', req.user);
-
     const { accessToken, refreshToken } = await this.authService.login(
       req.user,
     );
+    console.log(req.user);
 
     // 토큰 프론트로 보내긴하는데.. 쥐도새도 모르게 프론트는 모른다.
     res.cookie('refreshToken', refreshToken, {

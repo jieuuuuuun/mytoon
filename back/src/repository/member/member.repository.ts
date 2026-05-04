@@ -57,6 +57,11 @@ export class MemberRepository {
     return await this.prisma.member.findMany({
       include: {
         socials: true,
+        roles: {
+          include: {
+            role: true,
+          },
+        },
       },
     });
   }
@@ -65,7 +70,14 @@ export class MemberRepository {
   async findMemberById(id: number): Promise<MemberEntity | null> {
     return await this.prisma.member.findUnique({
       where: { id },
-      include: { socials: true },
+      include: {
+        socials: true,
+        roles: {
+          include: {
+            role: true,
+          },
+        },
+      },
     });
   }
 
@@ -73,7 +85,14 @@ export class MemberRepository {
   async findMemberByMemberEmail(email: string): Promise<MemberEntity | null> {
     return await this.prisma.member.findFirst({
       where: { email },
-      include: { socials: true },
+      include: {
+        socials: true,
+        roles: {
+          include: {
+            role: true,
+          },
+        },
+      },
     });
   }
 
@@ -93,6 +112,11 @@ export class MemberRepository {
       },
       include: {
         socials: true,
+        roles: {
+          include: {
+            role: true,
+          },
+        },
       },
     });
   }

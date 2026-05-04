@@ -4,6 +4,7 @@ export interface JwtPayload {
   id: number;
   email?: string;
   name?: string;
+  role?: string; //권한
   iat?: number; // 만들어진 시간
   exp?: number; // 만료 시간
 }

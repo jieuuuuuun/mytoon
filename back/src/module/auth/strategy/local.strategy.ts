@@ -39,10 +39,13 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     );
     if (!isMatch) throw new MemberException('비밀번호가 일치하지 않습니다.');
 
+    const role = foundMember.roles?.[0]?.role?.name;
+
     const jwtPayload: JwtPayload = {
       id: foundMember.id,
       email: loginMemberEmail,
       name: foundMember.name,
+      role: role,
     };
 
     return jwtPayload;

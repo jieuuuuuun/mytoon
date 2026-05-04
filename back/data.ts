@@ -39,7 +39,7 @@ const prisma = new PrismaClient();
   /*await prisma.role.createMany({
     data: [{ name: 'user' }, { name: 'admin' }],
   });*/
-  
+
   // await prisma.day.createMany({
   //   data: [
   //     { dayOfWeek: '월', slug: 'mon' },
@@ -51,4 +51,13 @@ const prisma = new PrismaClient();
   //     { dayOfWeek: '일', slug: 'sun' },
   //   ],
   // });
+
+  await prisma.memberRole.update({
+    where: {
+      id: 1,
+    },
+    data: {
+      roleId: 2,
+    }
+  });
 })();
