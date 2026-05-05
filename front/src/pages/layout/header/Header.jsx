@@ -4,42 +4,42 @@ import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 import useAuthStore from "../../../store/authStore";
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from "@tanstack/react-query";
 
 const Header = ({ mainCategories, handleCategoryOnClick }) => {
   const { main: mainCategory } = useParams();
   const currentPage = useLocation().pathname;
   const { member, setIsAuthenticated, setMember } = useAuthStore();
-  const [ isProfile, setIsProfile ] = useState(false);
-  const navigate = useNavigate()
+  const [isProfile, setIsProfile] = useState(false);
+  const navigate = useNavigate();
 
-    const logout = async () => {
-        const response = await fetch(`http://localhost:10000/auth/logout`, {
-            method: "POST",
-            // ※인증이 필요한 모든 요청에는 Cookie의 토큰을 같이 보내야한다.※,
-            credentials: "include"
-        })
+  const logout = async () => {
+    const response = await fetch(`http://localhost:10000/auth/logout`, {
+      method: "POST",
+      // ※인증이 필요한 모든 요청에는 Cookie의 토큰을 같이 보내야한다.※,
+      credentials: "include",
+    });
 
-        if(!response.ok) throw new Error('Logout Error')
-        return await response.json()
-    }
+    if (!response.ok) throw new Error("Logout Error");
+    return await response.json();
+  };
 
-    const logoutMutation = useMutation({
-        mutationFn: logout,
-        onSuccess: (res) => {
-            setIsAuthenticated(false)
-            setIsProfile(false)
-            setMember(null)
-            navigate("/", { replace: true })
-        },
-        onError: (err) => {
-            console.log(err)
-        }
-    })
+  const logoutMutation = useMutation({
+    mutationFn: logout,
+    onSuccess: (res) => {
+      setIsAuthenticated(false);
+      setIsProfile(false);
+      setMember(null);
+      navigate("/", { replace: true });
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
-    const handleLogoutOnClick = () => {
-        logoutMutation.mutate()
-    }
+  const handleLogoutOnClick = () => {
+    logoutMutation.mutate();
+  };
 
   const handleUserIconOnClick = () => {
     setIsProfile(!isProfile);
@@ -48,10 +48,21 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
   const profile = isProfile && (
     <S.Profile>
       <S.ProfileWrapper>
-        <S.MyPageBtn to={'/my-page'}>
-          {member.name}
-        </S.MyPageBtn>
+        <S.MyPageBtn to={"/my-page"}>{member.name}</S.MyPageBtn>
       </S.ProfileWrapper>
+      {member.role === "admin" && (
+        <S.ProfileWrapper>
+          <NavLink to={"/my-page"}>
+            작가등록
+          </NavLink>
+          <NavLink to={"/my-page"}>
+            컨텐츠 등록
+          </NavLink>
+          <NavLink to={"/my-page"}>
+            에피소드 등록
+          </NavLink>
+        </S.ProfileWrapper>
+      )}
       <S.LogoutBtn onClick={handleLogoutOnClick}>로그아웃</S.LogoutBtn>
     </S.Profile>
   );
@@ -93,7 +104,7 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
               <button></button>
             </form>
           </S.SearchWrapper>
-          { member ? (
+          {member ? (
             <>
               <button onClick={handleUserIconOnClick}>
                 <FontAwesomeIcon icon={faUser} size="xl" />

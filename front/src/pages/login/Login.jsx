@@ -6,10 +6,9 @@ import { useMutation } from "@tanstack/react-query";
 import useAuthStore from "../../store/authStore";
 
 const Login = () => {
-  const { setIsAuthenticated, setMember } = useAuthStore();
+  const { member, setIsAuthenticated, setMember } = useAuthStore();
   const navigate = useNavigate();
   const [isContnction, setIsContnction] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -42,6 +41,7 @@ const Login = () => {
     mutationFn: login,
     onSuccess: (res) => {
       // 로그인 성공
+      console.log(res.data.member);
       setMember(res.data.member);
       navigate("/", { replace: true });
     },
