@@ -53,13 +53,16 @@ const Header = ({ mainCategories, handleCategoryOnClick }) => {
       {member.role === "admin" && (
         <S.ProfileWrapper>
           <NavLink to={"/my-page"}>
-            작가등록
+            작가관리
           </NavLink>
           <NavLink to={"/my-page"}>
-            컨텐츠 등록
+            컨텐츠관리
           </NavLink>
           <NavLink to={"/my-page"}>
-            에피소드 등록
+            에피소드관리
+          </NavLink>
+          <NavLink to={"/my-page"}>
+            배너관리
           </NavLink>
         </S.ProfileWrapper>
       )}

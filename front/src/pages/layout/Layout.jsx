@@ -10,13 +10,29 @@ const Layout = () => {
 
   useEffect(() => {
     const getMainCategory = async () => {
-    const response = await fetch("http://localhost:10000/category");
-    const datas = await response.json();
-    setMainCategories(datas.data)
-  };
-  getMainCategory();
-  },[])
-
+      const [categoryRes, dayRes] = await Promise.all([
+        fetch("http://localhost:10000/category"),
+        fetch("http://localhost:10000/day"),
+      ]);
+      const categoryData = await categoryRes.json();
+      const dayData = await dayRes.json();
+      
+      const daycategory = {
+        id: 4,
+        name: "요일연재",
+        slug: "daily",
+        subCategories: dayData.data.map((day) => ({
+          id: day.id,
+          name: day.dayOfWeek,
+          slug: day.slug,
+        })),
+      };
+      
+      setMainCategories([...categoryData.data, daycategory]);
+    };
+    getMainCategory();
+  }, []);
+  
   const { main: currentMain } = useParams();
   const currentPage = useLocation().pathname;
 
@@ -49,7 +65,7 @@ const Layout = () => {
         </S.HeaderInner>
       </S.HaderWrapper>
       <S.MainWrapper>
-        {currentMain && (
+        {currentMain && mainCategories.length > 0 && (
           <SubCategory
             mainCategories={mainCategories}
             handleSubCategoryOnClick={handleSubCategoryOnClick}
