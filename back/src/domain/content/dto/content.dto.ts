@@ -4,14 +4,14 @@ import { IsNumber } from 'class-validator';
 export class ContentDTO {
   @ApiProperty({ example: 1, description: '아이디' })
   @IsNumber()
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
+  id!: number;
+  title!: string;
+  description!: string;
+  thumbnail!: string;
   keyword?: string;
-  viewsCount: number;
-  rating: number;
+  viewsCount!: number;
+  rating!: number;
 
-  mainCategoryId: number;
-  subCategoryId: number;
+  mainCategoryId!: number;
+  subCategoryId!: number;
 }
