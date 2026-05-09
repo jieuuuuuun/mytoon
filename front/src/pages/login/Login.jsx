@@ -41,7 +41,6 @@ const Login = () => {
     mutationFn: login,
     onSuccess: (res) => {
       // 로그인 성공
-      console.log(res.data.member);
       setMember(res.data.member);
       navigate("/", { replace: true });
     },
