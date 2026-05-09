@@ -134,10 +134,8 @@ export class MemberRepository {
     id: number,
     member: MemberUpdateDTO,
   ): Promise<MemberEntity | null> {
-    const { password, ...removedPasswordMember } = member;
-
     await this.prisma.member.update({
-      data: removedPasswordMember,
+      data: member,
       where: { id },
     });
 

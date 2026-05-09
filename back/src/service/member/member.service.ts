@@ -2,6 +2,7 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { MemberRepository } from 'src/repository/member/member.repository';
 import { AuthService } from '../auth/auth.service';
 import {
+  MemberPasswordUpdateDTO,
   MemberRegisterDTO,
   MemberUpdateDTO,
   OAuthLoginDTO,
@@ -136,12 +137,53 @@ export class MemberService {
   async modify(id: number, member: MemberUpdateDTO) {
     const foundMember = await this.memberRepository.findMemberById(id);
     if (!foundMember) {
-      console.log('member service modify foundMember error');
       throw new MemberException('회원을 찾을 수 없습니다');
     }
 
     const updatedMember = await this.memberRepository.updateProfile(id, member);
     return updatedMember;
+  }
+
+  //회원 비밀번호 수정
+  async updatePassowrd(id: number, password: MemberPasswordUpdateDTO) {
+    const foundMember = await this.memberRepository.findMemberById(id);
+    if (!foundMember) {
+      throw new MemberException('회원을 찾을 수 없습니다');
+    }
+
+    //LOCAL아이디 존재하는지
+    const social = foundMember.socials.find(
+      (s) => s.provider === AuthProvider.LOCAL,
+    );
+
+    if (!social || !social.password) {
+      throw new MemberException('로컬 계정이 존재하지 않습니다');
+    }
+
+    //현재 비밀번호 확인
+    const isPasswordMatch = await this.authService.comparePassword(
+      password.currentPassword,
+      social.password,
+    );
+
+    if (!isPasswordMatch) {
+      throw new MemberException('현재 비밀번호가 일치하지 않습니다');
+    }
+
+    if (!password.newPassword) {
+      throw new MemberException('변경할 비밀번호가 필요합니다.');
+    }
+
+    //같은 비밀번호 방지
+    if (password.currentPassword === password.newPassword) {
+      throw new MemberException('기존 비밀번호와 동일합니다');
+    }
+
+    //비밀번호 암호화
+    const hashed = await this.authService.hashPassword(password.newPassword);
+
+    //DB 업데이트
+    await this.memberRepository.updatePassword(social.id, hashed);
   }
 
   // 회원 탈퇴

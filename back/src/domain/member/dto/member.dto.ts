@@ -50,11 +50,17 @@ export class MemberUpdateDTO {
   @IsNumber()
   @IsOptional()
   age?: number;
+}
 
-  @ApiProperty({ example: 'test123!@#', description: '회원 비밀번호' })
+export class MemberPasswordUpdateDTO {
+  @ApiProperty({ example: 'test123!@#', description: '기존 비밀번호' })
+  @IsString()
+  currentPassword!: string;
+
+  @ApiProperty({ example: 'test123!@#', description: '변경 비밀번호' })
   @IsString()
   @IsOptional()
-  password?: string;
+  newPassword!: string;
 }
 
 // 로컬에서 로그인 하는 경우

@@ -13,6 +13,7 @@ import { ApiBody, ApiOperation } from '@nestjs/swagger';
 import { AuthProvider } from '@prisma/client';
 import { ApiResponse } from 'src/common/dto/api-response.dto';
 import {
+  MemberPasswordUpdateDTO,
   MemberRegisterDTO,
   MemberUpdateDTO,
 } from 'src/domain/member/dto/member.dto';
@@ -48,7 +49,7 @@ export class MemberController {
 
   // 회원정보 수정
   @ApiOperation({ summary: '회원 정보 수정' })
-  @Put(':id')
+  @Put(':id/profile')
   @HttpCode(200)
   async modify(
     @Param('id', ParseIntPipe) id: number,
@@ -56,6 +57,18 @@ export class MemberController {
   ): Promise<ApiResponse> {
     const updatedMember = await this.memberService.modify(id, member);
     return new ApiResponse('회원 정보 수정 완료', updatedMember);
+  }
+
+  //회원 비밀번호 수정
+  @ApiOperation({ summary: '회원 비밀번호 수정' })
+  @Put(':id/password')
+  @HttpCode(200)
+  async passwordModify(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() password: MemberPasswordUpdateDTO,
+  ): Promise<ApiResponse> {
+    await this.memberService.updatePassowrd(id, password);
+    return new ApiResponse('회원 정보 수정 완료');
   }
 
   // 회원 탈퇴
