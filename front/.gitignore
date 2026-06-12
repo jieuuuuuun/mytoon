@@ -1,23 +1,57 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# ==========================================
+# 1. Next.js 빌드 및 산출물 (Next.js 핵심 제외 목록)
+# ==========================================
+.next/
+out/
+
+# ==========================================
+# 2. 의존성 패키지 및 에코시스템 (Dependencies)
+# ==========================================
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
-/coverage
+# Next.js 빌드 추적 관련 파일 및 캐시
+.nft.json
+.serverless/
 
-# production
+# ==========================================
+# 3. 테스트 및 빌드 결과물 (Testing & Production)
+# ==========================================
+/coverage
 /build
 
-# misc
-.DS_Store
+# ==========================================
+# 4. 환경 변수 및 민감한 정보 (Env Files)
+# ==========================================
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# ==========================================
+# 5. 로그 및 운영체제 임시 파일 (Logs & OS)
+# ==========================================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# 6. 배포 및 에디터 설정 (Vercel & IDE)
+# ==========================================
+.vercel/
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
